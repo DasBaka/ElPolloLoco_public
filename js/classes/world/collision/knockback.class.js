@@ -6,7 +6,7 @@ class Knockback {
    }
 
    knockback(target, relation) {
-      this.world.disableKeys();
+      disableKeys();
       let interval = this.knockbackDirection(target, relation);
       interval;
       setTimeout(() => {
@@ -29,7 +29,7 @@ class Knockback {
    endKnockback(target, interval) {
       clearInterval(interval);
       if (target.health > 0) {
-         this.world.enableKeys();
+         enableKeys();
          this.world.pauseInterval(this.world.enemies, false);
       }
    }

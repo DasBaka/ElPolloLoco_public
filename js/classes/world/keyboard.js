@@ -18,3 +18,20 @@ let JUMP = false;
 let JUMP_disabled = false;
 let THROW = false;
 let THROW_disabled = false;
+
+function enableKeys() {
+   KEYS_disabled = false;
+   LEFT = false;
+   LEFT_disabled = false;
+   RIGHT = false;
+   RIGHT_disabled = false;
+   JUMP = false;
+   JUMP_disabled = false;
+   THROW = false;
+   THROW_disabled = false;
+}
+
+function disableKeys() {
+   enableKeys();
+   KEYS_disabled = true;
+}

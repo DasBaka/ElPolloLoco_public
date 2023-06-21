@@ -30,21 +30,23 @@ class World extends Drawable {
    constructor() {
       super();
       this.groundMaxSpeedAdjustment();
-      this.setWorld();
+      this.generateWorld();
+      this.setWorldForAll([
+         this.enemies,
+         this.backgroundObjects,
+         this.coins,
+         this.bottles,
+         this.textObjects,
+      ]);
       this.draw();
    }
 
-   setWorld() {
+   generateWorld() {
       this.character = new Character(this);
       this.statusbar = new Statusbar(this);
       this.enemyCollison = new EnemyCollision(this);
       this.nonEnemyCollision = new NonEnemyCollision(this);
       this.knockback = new Knockback(this);
-      this.setWorldForEach(this.enemies);
-      this.setWorldForEach(this.backgroundObjects);
-      this.setWorldForEach(this.coins);
-      this.setWorldForEach(this.bottles);
-      this.setWorldForEach(this.textObjects);
    }
 
    groundMaxSpeedAdjustment() {
@@ -53,6 +55,10 @@ class World extends Drawable {
       } else {
          this.groundMaxSpeed = Math.round(groundMaxSpd);
       }
+   }
+
+   setWorldForAll(arr) {
+      arr.forEach((el) => this.setWorldForEach(el));
    }
 
    setWorldForEach(objArr) {
@@ -78,23 +84,6 @@ class World extends Drawable {
       setTimeout(() => {
          bottle.y = groundLevel - bottle.h;
       }, respawnBottleCD);
-   }
-
-   enableKeys() {
-      KEYS_disabled = false;
-      LEFT = false;
-      LEFT_disabled = false;
-      RIGHT = false;
-      RIGHT_disabled = false;
-      JUMP = false;
-      JUMP_disabled = false;
-      THROW = false;
-      THROW_disabled = false;
-   }
-
-   disableKeys() {
-      this.enableKeys();
-      KEYS_disabled = true;
    }
 
    pauseInterval(obj, state) {
