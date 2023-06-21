@@ -48,7 +48,7 @@ class MovableObject extends DrawableObject {
    cameraCheck() {}
 
    /**
-    * Recalculates the objects.speedX (after it was changed).
+    * Recalculates the objects.speed (after it was changed).
     */
    refreshSpeed() {
       let speedX = canvasWidth * this.fasterIfHit();
