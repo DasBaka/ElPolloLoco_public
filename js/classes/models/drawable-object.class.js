@@ -57,7 +57,7 @@ class DrawableObject {
    }
 
    /**
-    * => see: MovableObject
+    * => see: {@link MovableObject.refreshSpeed}
     */
    refreshSpeed() {}
 
@@ -141,7 +141,7 @@ class DrawableObject {
    }
 
    /**
-    * Counts for: rightSide(obj), leftSide(obj), topSide(obj), bottomSide(obj):
+    * Counts for: {@link rightSide(obj)}, {@link leftSide(obj)}, {@link topSide(obj)}, {@link bottomSide(obj)}:
     * Defines the hitboxes borders of the object.
     * @param {object} obj - object
     * @returns - border coordinates
