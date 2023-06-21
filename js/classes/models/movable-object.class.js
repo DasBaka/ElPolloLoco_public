@@ -216,4 +216,20 @@ class MovableObject extends DrawableObject {
          });
       }, cancelInterval);
    }
+
+   /**
+    * Left movement condition.
+    * @returns - boolean
+    */
+   validateLeft() {
+      return LEFT && !LEFT_disabled && this.x < this.spawnX && this.world.character.health != 0;
+   }
+
+   /**
+    * Right movement condition.
+    * @returns - boolean
+    */
+   validateRight() {
+      return RIGHT && !RIGHT_disabled && this.world.character.health != 0;
+   }
 }

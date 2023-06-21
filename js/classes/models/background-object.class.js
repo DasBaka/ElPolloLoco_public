@@ -6,14 +6,18 @@ class BackgroundObject extends MovableObject {
    constructor(path, x, speed) {
       super().fetchData();
       this.loadImage(path);
-      this.speedX_rel =
-         (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, speed + 0.5));
+      // Recalculates the speed of the background object to create a parallax effect.
+      // Note: This results in a negative speed to move with the Character in opposing directions!
+      this.speedX_rel = (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, speed + 0.5));
       this.x_rel = x * this.w_rel;
       this.prepareImage();
       this.refreshSpeed();
       this.bgFix();
    }
 
+   /**
+    * Because of some size differences, this function fixes some empty pixels.
+    */
    bgFix() {
       this.w = this.w + 1;
       this.x = this.x + 1;
@@ -21,6 +25,10 @@ class BackgroundObject extends MovableObject {
       this.spawnY = 0;
    }
 
+   /**
+    * Left moving.
+    * Alternately: Stops movement at the beginning of the level.
+    */
    left() {
       if (this.validateLeft()) {
          this.moveLeft();
@@ -29,22 +37,12 @@ class BackgroundObject extends MovableObject {
       }
    }
 
+   /**
+    * Right movement.
+    */
    right() {
       if (this.validateRight()) {
          this.moveRight();
       }
-   }
-
-   validateLeft() {
-      return (
-         LEFT &&
-         !LEFT_disabled &&
-         this.x < this.spawnX &&
-         this.world.character.health != 0
-      );
-   }
-
-   validateRight() {
-      return RIGHT && !RIGHT_disabled && this.world.character.health != 0;
    }
 }
