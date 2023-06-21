@@ -1,0 +1,46 @@
+html {
+   height: 100%;
+   font-family: 'Boogaloo', sans-serif;
+}
+
+main,
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+body {
+   margin: 0;
+   height: 100%;
+   width: 100%;
+   background-color: wheat;
+   background-image: url(../img/5_background/complete_background.png);
+   background-size: cover;
+   background-blend-mode: luminosity;
+}
+
+main,
+canvas {
+   max-width: clamp(75%, calc(60vw + 288px), 100%);
+   max-height: 100%;
+   aspect-ratio: 16 / 9;
+}
+
+canvas {
+   background-image: url(../img/5_background/layers/air.png);
+   background-size: 102%;
+   border-radius: 1.25rem;
+}
+
+/* 4px @ 240px increasing to 21.5px @ 1920px */
+@media (min-width: 240px) {
+   :root {
+      font-size: calc(0.25rem + ((1vw - 2.4px) * 1.0417));
+      /* Note: The calc base value (0.25rem) MUST be stated in REM to maintain accessibility */
+      /* Where: 1.0417 = 100 * font-size_difference / viewport_width_difference */
+
+      /* Safari resize fix */
+      min-height: 0vw;
+   }
+}

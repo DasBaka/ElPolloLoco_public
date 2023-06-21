@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!--       // General -->
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <!--       // CSS -->
+      <link rel="stylesheet" href="css/boogaloo.font.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <!-- JSON, Data & Composition -->
+      <!--       // JS-Data -->
+      <script src="js/data/parameters.js"></script>
+      <script src="js/data/image-data.js"></script>
+      <script src="js/data/text-data.js"></script>
+      <script src="js/data/object-data.js"></script>
+      <!--       // Keyboard -->
+      <script src="js/classes/world/keyboard.js"></script>
+      <!-- Classes / Inheritance -->
+      <!--       // Collision -->
+      <script src="js/classes/world/collision/enemy-collision.class.js"></script>
+      <script src="js/classes/world/collision/knockback.class.js"></script>
+      <script src="js/classes/world/collision/non-enemy-collision.class.js"></script>
+      <!--       // DrawableObjects -->
+      <script src="js/classes/models/drawable-object.class.js"></script>
+      <!--       // MovableObjects EXTENDS DrawableObject-->
+      <script src="js/classes/models/movable-object.class.js"></script>
+      <script src="js/classes/models/background-object.class.js"></script>
+      <script src="js/classes/world/statusbar/icon.class.js"></script>
+      <script src="js/classes/world/statusbar/statusbar.class.js"></script>
+      <script src="js/classes/models/text-object.class.js"></script>
+      <script src="js/classes/consumables/tabasco.class.js"></script>
+      <!--       // AnimatableObjects EXTENDS MovableObject -->
+      <script src="js/classes/models/animatable-object.class.js"></script>
+      <script src="js/classes/consumables/coin.class.js"></script>
+      <!--       // JumpableObjects EXTENDS AnimatableObject-->
+      <script src="js/classes/models/jumpable-object.class.js"></script>
+      <script src="js/classes/character/character.class.js"></script>
+      <script src="js/classes/models/throwable-object.class.js"></script>
+      <!--       // "Enemies" (JumpableObjects) -->
+      <script src="js/classes/enemies/small-chicken.class.js"></script>
+      <script src="js/classes/enemies/medium-chicken.class.js"></script>
+      <script src="js/classes/enemies/big-chicken.class.js"></script>
+      <!--       // World -->
+      <script src="js/classes/world/drawable.class.js"></script>
+      <script src="js/classes/world/world.class.js"></script>
+      <!--       // Levels -->
+      <script src="js/classes/world/level.class.js"></script>
+      <script src="js/classes/world/levels/level0.js"></script>
+      <!-- Main -->
+      <script src="js/game.js"></script>
+      <!-- HTML -->
+      <title>EL POLO LOCO</title>
+      <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+   </head>
+   <body onload="init()">
+      <main id="gameDiv">
+         <canvas id="canvas"></canvas>
+      </main>
+   </body>
+</html>
