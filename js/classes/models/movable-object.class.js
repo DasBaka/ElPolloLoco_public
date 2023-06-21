@@ -6,6 +6,10 @@ class MovableObject extends DrawableObject {
    lastHit = 0;
    pauseInterval = false;
 
+   /**
+    * Interval for movement checks.
+    * If the checks are positive, the corresponding movement will be executed.
+    */
    movementInterval = setInterval(() => {
       this.left();
       this.right();
