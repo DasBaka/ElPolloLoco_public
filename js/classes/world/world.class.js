@@ -34,13 +34,7 @@ class World extends Drawable {
       this.createBaseWorld(level0);
       this.groundMaxSpeedAdjustment();
       this.generateWorld();
-      this.setWorldForAll([
-         this.enemies,
-         this.backgroundObjects,
-         this.coins,
-         this.bottles,
-         this.textObjects,
-      ]);
+      this.setWorldForAll(this.baseWorld());
       this.resetSpawns();
       this.draw();
    }
@@ -129,7 +123,7 @@ class World extends Drawable {
    }
 
    insideWorld() {
-      return [this.baseWorld(), this.character, this.throwable, this.statusbar];
+      return [...this.baseWorld(), this.character, this.throwable, this.statusbar];
    }
 
    outsideWorld() {

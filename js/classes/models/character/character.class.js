@@ -102,7 +102,6 @@ class Character extends JumpableObject {
             enemy.endInterval(enemy.jumpInterval);
          });
          showEndModal(false);
-         console.log(this.world.backgroundObjects[0].x);
          this.world.prepareWorldForReset();
       }
    }
