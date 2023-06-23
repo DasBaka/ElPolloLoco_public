@@ -1,7 +1,9 @@
 let world;
+let modal;
 
 function init() {
    world = new World();
+   modal = document.getElementById('modal');
 }
 
 window.addEventListener('keydown', (e) => {
@@ -38,3 +40,36 @@ window.addEventListener('blur', () => {
 /* window.addEventListener('orientationchange', () => {
    window.location.reload();
 }); */
+
+function showEndModal(state) {
+   let div = document.getElementById('inside-modal');
+   div.innerHTML = checkForWin(state);
+   toggleDialog();
+}
+
+function checkForWin(state) {
+   switch (state) {
+      case true: //win
+         modal.setAttribute('success', '');
+         return /*html*/ `Congratulations!`;
+      case false: //loose
+         modal.setAttribute('failed', '');
+         return /*html*/ `Game<br/>Over!`;
+   }
+}
+
+function toggleDialog() {
+   if (!modal.open) {
+      modal.showModal();
+   } else {
+      modal.close();
+   }
+   modal.classList.toggle('isOpen');
+}
+
+function resetGame() {
+   world = null;
+   toggleDialog();
+   init();
+   enableKeys();
+}

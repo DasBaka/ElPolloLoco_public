@@ -49,7 +49,7 @@ let characterClassData = {
    topOffset: 0.5,
    speedX_rel: pepeSpeed,
    animationCache: pepeAnimations,
-   health: 4,
+   health: 1,
    path: pepeAnimations['idle'][1],
 };
 

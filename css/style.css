@@ -4,10 +4,12 @@ html {
 }
 
 main,
-body {
+body,
+dialog[open] {
    display: flex;
    align-items: center;
    justify-content: center;
+   flex-direction: column;
 }
 
 body {
@@ -20,9 +22,17 @@ body {
    background-blend-mode: luminosity;
 }
 
+main {
+   position: relative;
+   width: clamp(75%, calc(60vw + 288px), 100%);
+   aspect-ratio: 16 / 9;
+}
+
 main,
-canvas {
-   max-width: clamp(75%, calc(60vw + 288px), 100%);
+canvas,
+.inside-modal,
+.mobile-view {
+   max-width: 100%;
    max-height: 100%;
    aspect-ratio: 16 / 9;
 }
@@ -31,6 +41,102 @@ canvas {
    background-image: url(../img/5_background/layers/air.png);
    background-size: 102%;
    border-radius: 1.25rem;
+}
+
+dialog {
+   width: 100%;
+   max-width: 100%;
+   height: 100%;
+   max-height: 100%;
+   background-color: transparent;
+   padding: 0;
+   border: none;
+   outline: none;
+}
+
+dialog[failed]::backdrop {
+   background: rgba(0, 0, 0, 0.25);
+   backdrop-filter: blur(3px) grayscale(50%);
+}
+
+dialog[success]::backdrop {
+   background: rgba(0, 0, 0, 0.125);
+   backdrop-filter: blur(1px) saturate(110%) brightness(110%);
+}
+
+dialog,
+dialog::backdrop {
+   opacity: 0;
+   transition: opacity 2s;
+}
+
+dialog.isOpen,
+dialog.isOpen::backdrop {
+   opacity: 1;
+}
+
+#replay {
+   appearance: none;
+   background-color: #ff9d00;
+   border-radius: 1.25rem;
+   font-size: 1.25rem;
+   font-family: 'Boogaloo', sans-serif;
+   padding: 0.25rem 1.5rem;
+}
+
+#replay:hover {
+   filter: brightness(105%);
+   scale: 1.01;
+}
+
+.inside-modal {
+   font-size: 6rem;
+   text-align: center;
+   -webkit-text-stroke: 0.5px #ff9d00;
+}
+
+.settings {
+   display: flex;
+   justify-content: right;
+}
+
+.sound-icon img {
+   object-fit: contain;
+   height: 100%;
+}
+
+.sound-icon + input {
+   display: none;
+}
+
+.mobile-view {
+   display: flex;
+   position: absolute;
+   justify-content: space-between;
+   flex-direction: column;
+}
+
+.mobile-view > div {
+   max-height: 8.25%;
+   max-width: clamp(75%, calc(60vw + 288px), 100%);
+   padding: 1rem;
+}
+
+.mobile-view .mobile-buttons {
+   display: none;
+   justify-content: space-between;
+}
+
+.mobile-buttons-wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+   .mobile-view .mobile-buttons {
+      display: flex;
+   }
 }
 
 /* 4px @ 240px increasing to 21.5px @ 1920px */

@@ -198,14 +198,6 @@ class MovableObject extends DrawableObject {
    }
 
    /**
-    * Ends an interval.
-    * @param {interval} fn - interval
-    */
-   endInterval(fn) {
-      clearInterval(fn);
-   }
-
-   /**
     * If the object reaches 0 health, this function ends all intervals of this object, given by this array.
     * @param {array} arr - array with intervals to end
     */

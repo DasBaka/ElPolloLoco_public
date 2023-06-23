@@ -158,4 +158,28 @@ class DrawableObject {
    bottomSide(obj) {
       return obj.y + obj.h * obj.bottomOffset;
    }
+
+   clearAllIntervals() {
+      let intervalArray = [];
+      intervalArray.push(
+         this.movementInterval,
+         this.animationInterval,
+         this.idleInterval,
+         this.jumpInterval,
+         this.updateStats
+      );
+      intervalArray.forEach((interval) => {
+         if (!interval) {
+            this.endInterval(interval);
+         }
+      });
+   }
+
+   /**
+    * Ends an interval.
+    * @param {interval} fn - interval
+    */
+   endInterval(fn) {
+      clearInterval(fn);
+   }
 }

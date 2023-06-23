@@ -54,8 +54,28 @@
       <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
    </head>
    <body onload="init()">
-      <main id="gameDiv">
+      <main>
          <canvas id="canvas"></canvas>
+         <div class="mobile-view" id="mobile">
+            <dialog class="end-screen" id="modal" oncancel="event.preventDefault()">
+               <h1 class="inside-modal" id="inside-modal"></h1>
+               <button type="button" id="replay" onclick="resetGame()">Play again?</button>
+            </dialog>
+            <div class="settings">
+               <label for="sound" class="sound-icon"><img src="/img/speaker-128.png" /></label>
+               <input id="sound" type="checkbox" />
+            </div>
+            <div class="mobile-buttons">
+               <div class="mobile-buttons-wrapper">
+                  <figure>&#8678;</figure>
+                  <figure>&#8680;</figure>
+               </div>
+               <div class="mobile-buttons-wrapper">
+                  <figure>&#8679;</figure>
+                  <figure>SPACE</figure>
+               </div>
+            </div>
+         </div>
       </main>
    </body>
 </html>

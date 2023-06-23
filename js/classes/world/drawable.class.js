@@ -1,7 +1,7 @@
 class Drawable {
    ctx;
    canvas;
-   gameDiv;
+   mobile;
 
    constructor() {
       this.defineCanvasProperties();
@@ -9,12 +9,14 @@ class Drawable {
 
    defineCanvasProperties() {
       this.canvas = document.getElementById('canvas');
+      this.mobile = document.getElementById('mobile');
       this.ctx = canvas.getContext('2d');
       this.ctx;
 
       //predefine the canvas size based on the window
       this.canvas.width = canvasWidth;
       this.canvas.height = canvasHeight;
+      this.mobile.style.width = this.canvas.width - this.getFontSize() * 2 + 'px';
    }
 
    draw() {

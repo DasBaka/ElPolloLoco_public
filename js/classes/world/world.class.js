@@ -1,21 +1,23 @@
 class World extends Drawable {
    // properties connected to world
-   character;
-   statusbar;
    enemyCollison;
    nonEnemyCollision;
    knockback;
-   enemies = level0.enemies;
-   backgroundObjects = level0.backgroundObjects;
 
+   level;
+   character;
+   statusbar;
+   enemies;
+   backgroundObjects;
    throwable = [];
-   coins = level0.coins;
-   bottles = level0.bottles;
-   textObjects = level0.textObjects;
+   coins;
+   bottles;
+   textObjects;
+
    // camera movement
    groundMaxSpeed;
-   cameraX = 0;
-   levelEnd = level0.levelEnd;
+   cameraX;
+   levelEnd;
 
    bottleInterval = setInterval(() => {
       if (THROW && !THROW_disabled && !KEYS_disabled && this.statusbar.bottleAmount > 0) {
@@ -29,6 +31,7 @@ class World extends Drawable {
 
    constructor() {
       super();
+      this.createBaseWorld(level0);
       this.groundMaxSpeedAdjustment();
       this.generateWorld();
       this.setWorldForAll([
@@ -38,7 +41,26 @@ class World extends Drawable {
          this.bottles,
          this.textObjects,
       ]);
+      this.resetSpawns();
       this.draw();
+   }
+
+   createBaseWorld(level) {
+      this.enemies = this.pushLevelData(level.enemies);
+      this.backgroundObjects = this.pushLevelData(level.backgroundObjects);
+      this.coins = this.pushLevelData(level.coins);
+      this.bottles = this.pushLevelData(level.bottles);
+      this.textObjects = this.pushLevelData(level.textObjects);
+      this.levelEnd = level.levelEnd;
+      this.cameraX = 0;
+   }
+
+   pushLevelData(data) {
+      let array = [];
+      for (let i = 0; i < data.length; i++) {
+         array.push(data[i]);
+      }
+      return array;
    }
 
    generateWorld() {
@@ -89,6 +111,38 @@ class World extends Drawable {
    pauseInterval(obj, state) {
       obj.forEach((o) => {
          o.pauseInterval = state;
+      });
+   }
+
+   prepareWorldForReset() {
+      this.insideWorld().forEach((el) => {
+         if (el.length == undefined) {
+            el.clearAllIntervals();
+         } else {
+            el.forEach((e) => e.clearAllIntervals());
+         }
+      });
+   }
+
+   baseWorld() {
+      return [this.enemies, this.backgroundObjects, this.coins, this.bottles, this.textObjects];
+   }
+
+   insideWorld() {
+      return [this.baseWorld(), this.character, this.throwable, this.statusbar];
+   }
+
+   outsideWorld() {
+      return [];
+   }
+
+   resetSpawns() {
+      this.insideWorld().forEach((el) => {
+         if (el.length == undefined) {
+            el.x = el.spawnX;
+         } else {
+            el.forEach((e) => (e.x = e.spawnX));
+         }
       });
    }
 }
