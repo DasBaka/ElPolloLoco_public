@@ -53,17 +53,21 @@
       <title>EL POLO LOCO</title>
       <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
    </head>
-   <body onload="init()">
+   <body onload="renderSite()">
       <main>
          <canvas id="canvas"></canvas>
-         <div class="mobile-view" id="mobile">
+         <div class="canvas-overlay mobile-view" id="mobile">
             <dialog class="end-screen" id="modal" oncancel="event.preventDefault()">
                <h1 class="inside-modal" id="inside-modal"></h1>
-               <button type="button" id="replay" onclick="resetGame()">Play again?</button>
+               <button type="button" class="display-none" id="replay" onclick="resetGame()">
+                  Play again?
+               </button>
+               <button type="button" id="start" onclick="init()">Start game</button>
             </dialog>
             <div class="settings">
-               <label for="sound" class="sound-icon"><img src="/img/speaker-128.png" /></label>
-               <input id="sound" type="checkbox" />
+               <input name="sound" id="sound" class="display-none" type="checkbox" /><label
+                  for="sound"
+                  class="sound-icon"></label>
             </div>
             <div class="mobile-buttons">
                <div class="mobile-buttons-wrapper">

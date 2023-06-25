@@ -70,8 +70,6 @@ const pepeAnimations = {
       'img/2_character_pepe/5_dead/D-54.png',
       'img/2_character_pepe/5_dead/D-55.png',
       'img/2_character_pepe/5_dead/D-56.png',
-      'img/2_character_pepe/5_dead/D-57.png',
-      '',
       'stop',
    ],
 };

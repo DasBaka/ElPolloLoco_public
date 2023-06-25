@@ -31,7 +31,7 @@ main {
 main,
 canvas,
 .inside-modal,
-.mobile-view {
+.canvas-overlay {
    max-width: 100%;
    max-height: 100%;
    aspect-ratio: 16 / 9;
@@ -67,7 +67,8 @@ dialog[success]::backdrop {
 dialog,
 dialog::backdrop {
    opacity: 0;
-   transition: opacity 2s;
+   transition: opacity 1.1s;
+   transition-delay: 0.75s;
 }
 
 dialog.isOpen,
@@ -75,16 +76,17 @@ dialog.isOpen::backdrop {
    opacity: 1;
 }
 
-#replay {
+button {
    appearance: none;
    background-color: #ff9d00;
    border-radius: 1.25rem;
    font-size: 1.25rem;
    font-family: 'Boogaloo', sans-serif;
    padding: 0.25rem 1.5rem;
+   pointer-events: all;
 }
 
-#replay:hover {
+button:hover {
    filter: brightness(105%);
    scale: 1.01;
 }
@@ -98,28 +100,39 @@ dialog.isOpen::backdrop {
 .settings {
    display: flex;
    justify-content: right;
+   height: 6%;
+   padding: 1%;
+   width: 98%;
 }
 
-.sound-icon img {
-   object-fit: contain;
+.sound-icon {
    height: 100%;
+   aspect-ratio: 1 / 1;
+   background-image: url(/img/speaker-128.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   filter: opacity(66%);
 }
 
-.sound-icon + input {
-   display: none;
+input:checked + .sound-icon {
+   background-image: url(/img/mute-2-128.png);
+   padding-right: 0.36%;
+}
+
+.canvas-overlay {
+   display: flex;
+   position: absolute;
+}
+
+.main-menu {
+   background-image: url(/img/9_intro_outro_screens/start/startscreen_2.png);
+   border-radius: 1.25rem;
+   background-size: 100%;
 }
 
 .mobile-view {
-   display: flex;
-   position: absolute;
    justify-content: space-between;
    flex-direction: column;
-}
-
-.mobile-view > div {
-   max-height: 8.25%;
-   max-width: clamp(75%, calc(60vw + 288px), 100%);
-   padding: 1rem;
 }
 
 .mobile-view .mobile-buttons {
@@ -131,6 +144,21 @@ dialog.isOpen::backdrop {
    display: flex;
    align-items: center;
    justify-content: space-between;
+}
+
+#start {
+   position: absolute;
+   top: 3rem;
+   font-size: 3rem;
+   -webkit-text-stroke: white 0.25px;
+}
+
+.end-screen {
+   pointer-events: none;
+}
+
+.display-none {
+   display: none;
 }
 
 @media (max-width: 900px) {

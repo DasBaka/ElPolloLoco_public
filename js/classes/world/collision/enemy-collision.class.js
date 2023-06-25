@@ -56,7 +56,11 @@ class EnemyCollision {
    characterJumpsOnEnemy(char, enemy) {
       if (!enemy.invulnerability()) {
          enemy.isHit();
-         char.bump();
+         if (enemy instanceof BigChicken) {
+            char.speedY_rel *= -2;
+         } else {
+            char.bump();
+         }
       }
    }
 
@@ -64,7 +68,7 @@ class EnemyCollision {
       if (char.isInvincibleWhileJumping()) {
          char.isHit();
          this.world.pauseInterval(this.world.enemies, true);
-         char.isCharacterDead();
+         char.isCharacterDead(false);
          this.world.knockback.knockback(char, enemy);
       }
    }

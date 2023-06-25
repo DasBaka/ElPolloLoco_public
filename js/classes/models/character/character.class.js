@@ -94,15 +94,19 @@ class Character extends JumpableObject {
       return !this.world.character.invulnerability() && this.world.character.speedY < 15;
    }
 
-   isCharacterDead() {
-      if (this.health == 0) {
+   isCharacterDead(bossDown) {
+      if (this.health == 0 || bossDown) {
          this.world.enemies.forEach((enemy) => {
             enemy.endInterval(enemy.movementInterval);
-            enemy.endInterval(enemy.animationInterval);
+            if (!enemy instanceof BigChicken) {
+               enemy.endInterval(enemy.animationInterval);
+            }
             enemy.endInterval(enemy.jumpInterval);
          });
-         showEndModal(false);
-         this.world.prepareWorldForReset();
+         showEndModal(bossDown);
+         setTimeout(() => {
+            this.world.clearAllIntervals();
+         }, 1100);
       }
    }
 

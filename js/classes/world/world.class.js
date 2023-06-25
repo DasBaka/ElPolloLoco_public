@@ -29,9 +29,10 @@ class World extends Drawable {
       }
    }, msPerCheck);
 
-   constructor() {
+   constructor(level) {
       super();
-      this.createBaseWorld(level0);
+      this.level = new Level(level);
+      this.createBaseWorld(this.level);
       this.groundMaxSpeedAdjustment();
       this.generateWorld();
       this.setWorldForAll(this.baseWorld());
@@ -108,14 +109,11 @@ class World extends Drawable {
       });
    }
 
-   prepareWorldForReset() {
-      this.insideWorld().forEach((el) => {
-         if (el.length == undefined) {
-            el.clearAllIntervals();
-         } else {
-            el.forEach((e) => e.clearAllIntervals());
-         }
-      });
+   clearAllIntervals() {
+      let maxIntervalCount = setInterval(() => ';');
+      for (let i = 0; i < maxIntervalCount + 1; i++) {
+         clearInterval(i);
+      }
    }
 
    baseWorld() {
@@ -124,10 +122,6 @@ class World extends Drawable {
 
    insideWorld() {
       return [...this.baseWorld(), this.character, this.throwable, this.statusbar];
-   }
-
-   outsideWorld() {
-      return [];
    }
 
    resetSpawns() {

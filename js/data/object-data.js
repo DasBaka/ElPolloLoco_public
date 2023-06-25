@@ -49,7 +49,7 @@ let characterClassData = {
    topOffset: 0.5,
    speedX_rel: pepeSpeed,
    animationCache: pepeAnimations,
-   health: 1,
+   health: 3,
    path: pepeAnimations['idle'][1],
 };
 
@@ -94,6 +94,7 @@ let bigChickenClassData = {
    health: 5,
    maxHealth: 5,
    path: bigChickenAnimations['walking'][1],
+   resizingAmount: 300,
 };
 
 let throwableObjectData = {

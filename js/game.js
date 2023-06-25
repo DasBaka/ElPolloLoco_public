@@ -1,9 +1,28 @@
 let world;
 let modal;
 
-function init() {
-   world = new World();
+function renderSite() {
    modal = document.getElementById('modal');
+   modal.parentElement.style.width = canvasWidth + 'px';
+   prepareMainMenu(true);
+}
+
+function prepareMainMenu(state) {
+   let start = document.getElementById('start');
+   if (!start.classList.contains('display-none')) {
+      modal.parentElement.classList.toggle('main-menu');
+      modal.classList.toggle('isOpen');
+      if (!state) {
+         start.classList.add('display-none');
+         document.getElementById('replay').classList.remove('display-none');
+      }
+   }
+   modal.open = state;
+}
+
+function init() {
+   prepareMainMenu(false);
+   world = new World(level0);
 }
 
 window.addEventListener('keydown', (e) => {
@@ -70,6 +89,6 @@ function toggleDialog() {
 function resetGame() {
    world = null;
    toggleDialog();
-   init();
    enableKeys();
+   init();
 }
