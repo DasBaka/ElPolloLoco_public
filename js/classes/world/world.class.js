@@ -38,6 +38,7 @@ class World extends Drawable {
       this.setWorldForAll(this.baseWorld());
       this.resetSpawns();
       this.draw();
+      this.playAudio(BGM_AUDIO, 0, 0.5, true);
    }
 
    createBaseWorld(level) {
@@ -132,5 +133,18 @@ class World extends Drawable {
             el.forEach((e) => (e.x = e.spawnX));
          }
       });
+   }
+
+   playAudio(audio, time, volume, loop) {
+      if (time !== null) {
+         audio.currentTime = parseFloat(time).toFixed(1);
+      }
+      if (volume !== null) {
+         audio.volume = volume;
+      }
+      if (loop !== null) {
+         audio.loop = true;
+      }
+      audio.play();
    }
 }

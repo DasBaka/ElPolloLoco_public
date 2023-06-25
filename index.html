@@ -14,6 +14,7 @@
       <script src="js/data/image-data.js"></script>
       <script src="js/data/text-data.js"></script>
       <script src="js/data/object-data.js"></script>
+      <script src="js/data/audio-data.js"></script>
       <!--       // Keyboard -->
       <script src="js/classes/world/keyboard.js"></script>
       <!-- Classes / Inheritance -->
@@ -59,10 +60,17 @@
          <div class="canvas-overlay mobile-view" id="mobile">
             <dialog class="end-screen" id="modal" oncancel="event.preventDefault()">
                <h1 class="inside-modal" id="inside-modal"></h1>
-               <button type="button" class="display-none" id="replay" onclick="resetGame()">
+               <button
+                  type="button"
+                  class="display-none"
+                  id="replay"
+                  onclick="resetGame()"
+                  onkeydown="event.preventDefault()">
                   Play again?
                </button>
-               <button type="button" id="start" onclick="init()">Start game</button>
+               <button type="button" id="start" onclick="init()" onkeydown="event.preventDefault()">
+                  Start game
+               </button>
             </dialog>
             <div class="settings">
                <input name="sound" id="sound" class="display-none" type="checkbox" /><label

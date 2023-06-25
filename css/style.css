@@ -108,14 +108,14 @@ button:hover {
 .sound-icon {
    height: 100%;
    aspect-ratio: 1 / 1;
-   background-image: url(/img/speaker-128.png);
+   background-image: url(/img/mute-2-128.png);
    background-size: contain;
    background-repeat: no-repeat;
    filter: opacity(66%);
 }
 
 input:checked + .sound-icon {
-   background-image: url(/img/mute-2-128.png);
+   background-image: url(/img/speaker-128.png);
    padding-right: 0.36%;
 }
 
