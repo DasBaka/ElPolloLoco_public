@@ -47,20 +47,18 @@ class SmallChicken extends JumpableObject {
    syncToCharMovement() {
       if (this.world?.character.validateLeft()) {
          this.speedX += this.world.groundMaxSpeed;
-         Math.round(this.speedX);
       }
       if (this.world?.character.validateRight()) {
          this.speedX -= this.world.groundMaxSpeed;
-         Math.round(this.speedX);
       }
    }
 
    syncToCharHit() {
       if (this.world?.character.validateLeft()) {
-         this.speedX = this.world.groundMaxSpeed;
+         this.speedX = this.world.groundMaxSpeed * 1.5;
       }
       if (this.world?.character.validateRight()) {
-         this.speedX = -this.world.groundMaxSpeed;
+         this.speedX = -this.world.groundMaxSpeed * 1.5;
       }
    }
 
@@ -78,6 +76,18 @@ class SmallChicken extends JumpableObject {
          let x = this.x / canvasWidth;
          let y = this.y / canvasHeight;
          this.world.spawnCoin(x, y);
+      }
+   }
+
+   isHit() {
+      playChickenCrySound();
+      super.isHit();
+   }
+
+   noHealth() {
+      if (this.health == 0) {
+         playChickenDefeatSound();
+         super.noHealth();
       }
    }
 }

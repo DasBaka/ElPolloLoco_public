@@ -33,12 +33,12 @@ class World extends Drawable {
       super();
       this.level = new Level(level);
       this.createBaseWorld(this.level);
-      this.groundMaxSpeedAdjustment();
+      this.groundMaxSpeed = groundMaxSpd;
       this.generateWorld();
       this.setWorldForAll(this.baseWorld());
       this.resetSpawns();
       this.draw();
-      this.playAudio(BGM_AUDIO, 0, 0.5, true);
+      playBGMusic();
    }
 
    createBaseWorld(level) {
@@ -65,14 +65,6 @@ class World extends Drawable {
       this.enemyCollison = new EnemyCollision(this);
       this.nonEnemyCollision = new NonEnemyCollision(this);
       this.knockback = new Knockback(this);
-   }
-
-   groundMaxSpeedAdjustment() {
-      if (Math.abs(groundMaxSpd) < 1) {
-         this.groundMaxSpeed = groundMaxSpd;
-      } else {
-         this.groundMaxSpeed = Math.round(groundMaxSpd);
-      }
    }
 
    setWorldForAll(arr) {
@@ -133,18 +125,5 @@ class World extends Drawable {
             el.forEach((e) => (e.x = e.spawnX));
          }
       });
-   }
-
-   playAudio(audio, time, volume, loop) {
-      if (time !== null) {
-         audio.currentTime = parseFloat(time).toFixed(1);
-      }
-      if (volume !== null) {
-         audio.volume = volume;
-      }
-      if (loop !== null) {
-         audio.loop = true;
-      }
-      audio.play();
    }
 }

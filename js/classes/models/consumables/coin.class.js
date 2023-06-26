@@ -13,15 +13,28 @@ class Coin extends AnimatableObject {
 
    left() {
       if (LEFT && !LEFT_disabled && this.world.character.health != 0) {
-         this.speedX = this.world.groundMaxSpeed;
+         this.refreshSpeed();
          this.moveLeft();
       }
    }
 
    right() {
       if (RIGHT && !RIGHT_disabled && this.world.character.health != 0) {
-         this.speedX = this.world.groundMaxSpeed;
+         this.refreshSpeed();
          this.moveRight();
+      }
+   }
+
+   refreshSpeed() {
+      let speed = groundMaxSpd * this.fasterIfHit();
+      this.speedX = speed;
+   }
+
+   fasterIfHit() {
+      if (this.world?.character.invulnerability()) {
+         return 1.5;
+      } else {
+         return 1;
       }
    }
 }

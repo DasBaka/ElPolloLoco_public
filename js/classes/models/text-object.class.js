@@ -28,7 +28,7 @@ class TextObject extends MovableObject {
     */
    left() {
       if (this.validateLeft()) {
-         this.speedX = this.world.groundMaxSpeed;
+         this.refreshSpeed();
          this.moveLeft();
       } else if (this.x > this.spawnX) {
          this.x = this.spawnX;
@@ -40,8 +40,21 @@ class TextObject extends MovableObject {
     */
    right() {
       if (this.validateRight()) {
-         this.speedX = this.world.groundMaxSpeed;
+         this.refreshSpeed();
          this.moveRight();
+      }
+   }
+
+   refreshSpeed() {
+      let speed = groundMaxSpd * this.fasterIfHit();
+      this.speedX = speed;
+   }
+
+   fasterIfHit() {
+      if (this.world?.character.invulnerability()) {
+         return 1.5;
+      } else {
+         return 1;
       }
    }
 }

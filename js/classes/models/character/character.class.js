@@ -57,9 +57,28 @@ class Character extends JumpableObject {
       return RIGHT && !RIGHT_disabled && this.levelIsNotEnding();
    }
 
+   isHit() {
+      super.isHit();
+      console.log(KEYS_disabled, RIGHT_disabled, LEFT_disabled);
+   }
+
    // animation states
    isWalking() {
-      return (this.validateLeft() || this.validateRight()) && !JUMP && this.y == this.spawnY;
+      if (this.validateWalking()) {
+         playFootstepsSound();
+      } else {
+         PEPE_WALKING_AUDIO.pause();
+      }
+      return this.validateWalking();
+   }
+
+   validateWalking() {
+      return (
+         (this.validateLeft() || this.validateRight()) &&
+         !JUMP &&
+         this.y == this.spawnY &&
+         !this.mtplBtnPress()
+      );
    }
 
    isJumping() {

@@ -31,6 +31,7 @@ class BackgroundObject extends MovableObject {
     */
    left() {
       if (this.validateLeft()) {
+         this.refreshSpeed();
          this.moveLeft();
       } else if (this.x > this.spawnX) {
          this.x = this.spawnX;
@@ -42,7 +43,16 @@ class BackgroundObject extends MovableObject {
     */
    right() {
       if (this.validateRight()) {
+         this.refreshSpeed();
          this.moveRight();
+      }
+   }
+
+   fasterIfHit() {
+      if (this.world?.character.invulnerability()) {
+         return this.speedX_rel * 1.5;
+      } else {
+         return this.speedX_rel;
       }
    }
 }

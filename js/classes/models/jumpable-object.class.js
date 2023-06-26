@@ -68,9 +68,9 @@ class JumpableObject extends AnimatableObject {
       if (this.validateOnGround()) {
          this.speedY_rel = this.calcSpeed();
          this.inAir = true;
-         if (this instanceof Character) {
-            this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO, '0.033', 0.8, null);
-            this.world.playAudio(PEPE_JUMP_AUDIO, '0.033', 0.75, null);
+         if (this instanceof Character && !this.invulnerability()) {
+            playPepeJumpGrunt();
+            playPepeJumpingSound();
          }
       }
    }
@@ -105,6 +105,9 @@ class JumpableObject extends AnimatableObject {
       if (this.validateBehindPeakHeight()) {
          JUMP_disabled = true;
          this.isAbove = true;
+         if (this instanceof Character) {
+            PEPE_JUMP_AUDIO.pause();
+         }
       }
    }
 

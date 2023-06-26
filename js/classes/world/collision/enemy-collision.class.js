@@ -36,6 +36,7 @@ class EnemyCollision {
          if (enemy instanceof BigChicken) {
             bottle.isHit();
             enemy.isHit();
+            /*             playBigBawkSound(); */
          } else {
             bottle.isHit();
             enemy.health = 1;
@@ -60,8 +61,8 @@ class EnemyCollision {
             char.speedY_rel *= -2;
          } else {
             char.bump();
-            this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO, '0.033', 0.75, null);
-            this.world.playAudio(PEPE_JUMP_AUDIO, '0.033', 0.75, null);
+            playPepeJumpGrunt();
+            playPepeJumpingSound();
          }
       }
    }
@@ -69,6 +70,7 @@ class EnemyCollision {
    characterGetsHit(char, enemy) {
       if (char.isInvincibleWhileJumping()) {
          char.isHit();
+         playPepeHurtSound();
          this.world.pauseInterval(this.world.enemies, true);
          char.isCharacterDead(false);
          this.world.knockback.knockback(char, enemy);

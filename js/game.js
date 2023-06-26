@@ -1,6 +1,8 @@
 let world;
 let modal;
 
+playBGMusic();
+
 function renderSite() {
    modal = document.getElementById('modal');
    modal.parentElement.style.width = canvasWidth + 'px';

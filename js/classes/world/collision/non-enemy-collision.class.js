@@ -27,9 +27,11 @@ class NonEnemyCollision {
       let stats = this.world.statusbar;
       if (char.isColliding(coin)) {
          if (this.isNotFullHealth(stats, char)) {
+            playHealthSound();
             stats.updateCoinValue(arr, index);
             char.health += 1;
          } else if (this.canCollectCoins(stats, char)) {
+            playCoinGrabSound();
             stats.updateCoinValue(arr, index);
          }
       }
