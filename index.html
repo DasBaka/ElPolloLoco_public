@@ -64,18 +64,25 @@
                   type="button"
                   class="display-none"
                   id="replay"
-                  onclick="resetGame()"
-                  onkeydown="event.preventDefault()">
+                  onclick="resetGame(); initialBGMStart();"
+                  onkeydown="event.preventDefault();">
                   Play again?
                </button>
-               <button type="button" id="start" onclick="init()" onkeydown="event.preventDefault()">
+               <button
+                  type="button"
+                  id="start"
+                  onclick="init(); initialBGMStart();"
+                  onkeydown="event.preventDefault(); ">
                   Start game
                </button>
             </dialog>
             <div class="settings">
-               <input name="sound" id="sound" class="display-none" type="checkbox" /><label
-                  for="sound"
-                  class="sound-icon"></label>
+               <input
+                  name="sound"
+                  id="sound"
+                  class="display-none"
+                  onchange="muteAllAudio(); initialBGMStart(); "
+                  type="checkbox" /><label for="sound" class="sound-icon"></label>
             </div>
             <div class="mobile-buttons">
                <div class="mobile-buttons-wrapper">

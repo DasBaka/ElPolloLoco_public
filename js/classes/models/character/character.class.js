@@ -57,17 +57,14 @@ class Character extends JumpableObject {
       return RIGHT && !RIGHT_disabled && this.levelIsNotEnding();
    }
 
-   isHit() {
-      super.isHit();
-      console.log(KEYS_disabled, RIGHT_disabled, LEFT_disabled);
-   }
-
    // animation states
    isWalking() {
       if (this.validateWalking()) {
-         playFootstepsSound();
+         if (PEPE_WALKING_AUDIO.object.paused) {
+            this.world.playAudio(PEPE_WALKING_AUDIO);
+         }
       } else {
-         PEPE_WALKING_AUDIO.pause();
+         PEPE_WALKING_AUDIO.object.pause();
       }
       return this.validateWalking();
    }
@@ -115,17 +112,7 @@ class Character extends JumpableObject {
 
    isCharacterDead(bossDown) {
       if (this.health == 0 || bossDown) {
-         this.world.enemies.forEach((enemy) => {
-            enemy.endInterval(enemy.movementInterval);
-            if (!enemy instanceof BigChicken) {
-               enemy.endInterval(enemy.animationInterval);
-            }
-            enemy.endInterval(enemy.jumpInterval);
-         });
-         showEndModal(bossDown);
-         setTimeout(() => {
-            this.world.clearAllIntervals();
-         }, 1100);
+         this.world.characterIsDead(bossDown);
       }
    }
 

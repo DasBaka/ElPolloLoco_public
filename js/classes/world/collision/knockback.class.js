@@ -7,7 +7,7 @@ class Knockback {
 
    knockback(target, relation) {
       if (target instanceof Character) {
-         PEPE_WALKING_AUDIO.pause();
+         PEPE_WALKING_AUDIO.object.pause();
       }
       disableKeys();
       let interval = this.knockbackDirection(target, relation);

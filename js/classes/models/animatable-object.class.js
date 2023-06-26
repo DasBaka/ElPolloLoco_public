@@ -19,7 +19,9 @@ class AnimatableObject extends MovableObject {
     * Interval for animations.
     */
    animationInterval = setInterval(() => {
-      this.chooseAnimation();
+      if (this.isInsideCanvas(this.x)) {
+         this.chooseAnimation();
+      }
    }, msPerFrame);
 
    /**

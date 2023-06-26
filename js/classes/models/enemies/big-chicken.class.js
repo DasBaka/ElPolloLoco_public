@@ -4,15 +4,14 @@ class BigChicken extends MediumChicken {
    resizingAmount = this.data['resizingAmount'];
    originalSize;
    world;
+   hasSeenTheCharacter = false;
 
    resizePointY;
    resizingState;
 
    resizeInterval = setInterval(() => {
       let ratio = this.w / this.h;
-      if (this.health == 0 && !this.resizingState) {
-         this.bossDefeated();
-      }
+
       if (this.healthRatio() < this.sizeRatio()) {
          this.resizingState = true;
          this.h -= (1 / this.resizingAmount) * canvasHeight;
@@ -28,8 +27,20 @@ class BigChicken extends MediumChicken {
       }
    }, msPerCheck);
 
+   stateCheckInterval = setInterval(() => {
+      if (this.health == 0 && !this.resizingState) {
+         this.bossDefeated();
+      }
+      if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
+         this.world.playAudio(BOSS_BGM_AUDIO);
+         this.hasSeenTheCharacter = true;
+         this.world.silenceBGM(BGM_AUDIO);
+      }
+   });
+
    constructor(spawn) {
       super().fetchData();
+      this.hasSeenTheCharacter = false;
       this.loadImage(this.path);
       this.prepareImage();
       this.y += 0.05 * canvasHeight;
@@ -40,7 +51,13 @@ class BigChicken extends MediumChicken {
 
    left() {
       if (!this.resizingState) {
-         super.left();
+         if (this.isInsideCanvas(this.x) || this.hasSeenTheCharacter) {
+            this.speedAdjustment();
+            this.moveLeft();
+         } else if (this.isOutsideCanvas(this.spawnX)) {
+            this.x = this.spawnX;
+            BOSS_BGM_AUDIO.object.pause();
+         }
       }
    }
 

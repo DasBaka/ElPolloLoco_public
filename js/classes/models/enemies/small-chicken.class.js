@@ -80,13 +80,13 @@ class SmallChicken extends JumpableObject {
    }
 
    isHit() {
-      playChickenCrySound();
+      this.world.playAudio(CHICKEN_CRY_AUDIO);
       super.isHit();
    }
 
    noHealth() {
       if (this.health == 0) {
-         playChickenDefeatSound();
+         this.world.playAudio(CHICKEN_DEFEAT_AUDIO);
          super.noHealth();
       }
    }

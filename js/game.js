@@ -1,7 +1,7 @@
 let world;
 let modal;
 
-playBGMusic();
+muteAllAudio();
 
 function renderSite() {
    modal = document.getElementById('modal');
@@ -89,8 +89,21 @@ function toggleDialog() {
 }
 
 function resetGame() {
+   world.clearAllIntervals();
    world = null;
    toggleDialog();
    enableKeys();
    init();
+}
+
+function muteAllAudio() {
+   allAudio.forEach((el) => (el.object.muted = !el.object.muted));
+}
+
+function initialBGMStart() {
+   let audio = BGM_AUDIO.object;
+   audio.play();
+   audio.currentTime = 0;
+   audio.loop = true;
+   audio.volume = 0.25;
 }

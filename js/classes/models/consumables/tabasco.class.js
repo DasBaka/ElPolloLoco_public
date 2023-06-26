@@ -11,20 +11,6 @@ class Tabasco extends MovableObject {
 
    left() {
       if (LEFT && !LEFT_disabled && this.world.character.health != 0) {
-         this.speedX = this.world.groundMaxSpeed;
-         this.moveLeft();
-      }
-   }
-
-   right() {
-      if (RIGHT && !RIGHT_disabled && this.world.character.health != 0) {
-         this.speedX = this.world.groundMaxSpeed;
-         this.moveRight();
-      }
-   }
-
-   left() {
-      if (LEFT && !LEFT_disabled && this.world.character.health != 0) {
          this.refreshSpeed();
          this.moveLeft();
       }

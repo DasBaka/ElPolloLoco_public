@@ -25,6 +25,7 @@ class World extends Drawable {
          THROW_disabled = true;
          this.throwable.push(new ThrowableObject(this));
          this.throwable[this.throwable.length - 1].world = this;
+         this.playAudio(THROW_BOTTLE_AUDIO);
          this.bottleCooldown();
       }
    }, msPerCheck);
@@ -38,7 +39,7 @@ class World extends Drawable {
       this.setWorldForAll(this.baseWorld());
       this.resetSpawns();
       this.draw();
-      playBGMusic();
+      this.playAudio(BGM_AUDIO);
    }
 
    createBaseWorld(level) {
@@ -125,5 +126,62 @@ class World extends Drawable {
             el.forEach((e) => (e.x = e.spawnX));
          }
       });
+   }
+
+   playAudio(variable) {
+      let audio = variable.object;
+      audio.play();
+      audio.volume = variable.volume ?? 1;
+      audio.currentTime = variable.time ?? audio.currentTime;
+      audio.loop = variable.loop ?? false;
+   }
+
+   silenceBGM(variable) {
+      let audio = variable.object;
+      let interval = setInterval(() => {
+         let i = audio.volume;
+         i -= 0.01;
+         if (i <= 0) {
+            clearInterval(interval);
+         } else {
+            audio.volume = i;
+         }
+      }, 100);
+      interval;
+   }
+
+   characterIsDead(bossDown) {
+      this.enemies.forEach((enemy) => {
+         enemy.endInterval(enemy.movementInterval);
+         if (!enemy instanceof BigChicken) {
+            enemy.endInterval(enemy.animationInterval);
+         }
+         enemy.endInterval(enemy.jumpInterval);
+      });
+      showEndModal(bossDown);
+      setTimeout(() => {
+         this.clearAllIntervals();
+         this.silenceAllBGM();
+      }, 1100);
+      this.prepareAudioForModal(bossDown);
+   }
+
+   prepareAudioForModal(bossDown) {
+      this.silenceAllBGM();
+      setTimeout(() => {
+         switch (bossDown) {
+            case true:
+               this.playAudio(WIN_AUDIO);
+               break;
+            case false:
+               this.playAudio(LOOSE_AUDIO);
+               break;
+         }
+      }, 750);
+   }
+
+   silenceAllBGM() {
+      this.silenceBGM(BGM_AUDIO);
+      this.silenceBGM(BOSS_BGM_AUDIO);
    }
 }

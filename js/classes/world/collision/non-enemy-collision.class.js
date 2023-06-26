@@ -27,11 +27,11 @@ class NonEnemyCollision {
       let stats = this.world.statusbar;
       if (char.isColliding(coin)) {
          if (this.isNotFullHealth(stats, char)) {
-            playHealthSound();
+            this.world.playAudio(GET_HEALTH_AUDIO);
             stats.updateCoinValue(arr, index);
             char.health += 1;
          } else if (this.canCollectCoins(stats, char)) {
-            playCoinGrabSound();
+            this.world.playAudio(COIN_GRAB_AUDIO);
             stats.updateCoinValue(arr, index);
          }
       }
@@ -52,6 +52,7 @@ class NonEnemyCollision {
          if (stats.bottleAmount == stats.maxBottle) {
             return;
          } else {
+            this.world.playAudio(COLLECT_BOTTLE_AUDIO);
             stats.updateBottleValue(arr, index);
          }
       }
