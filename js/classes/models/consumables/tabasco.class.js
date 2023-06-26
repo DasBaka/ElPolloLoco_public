@@ -5,6 +5,7 @@ class Tabasco extends MovableObject {
    constructor(x) {
       super().fetchData();
       this.loadImage(this.path);
+      this.speedX_rel = groundMaxSpdRel;
       this.prepareImage();
       this.letSpawn(x);
    }
@@ -23,16 +24,11 @@ class Tabasco extends MovableObject {
       }
    }
 
-   refreshSpeed() {
-      let speed = groundMaxSpd * this.fasterIfHit();
-      this.speedX = speed;
-   }
-
    fasterIfHit() {
       if (this.world?.character.invulnerability()) {
-         return 1.5;
+         return this.speedX_rel * 1.5;
       } else {
-         return 1;
+         return this.speedX_rel;
       }
    }
 }

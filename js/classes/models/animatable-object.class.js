@@ -24,13 +24,6 @@ class AnimatableObject extends MovableObject {
       }
    }, msPerFrame);
 
-   /**
-    * Interval for setting timestamps if object is idle.
-    */
-   idleInterval = setInterval(() => {
-      this.setIdleTime();
-   }, msPerCheck);
-
    constructor() {
       super();
       this.idleSince = new Date().getTime();

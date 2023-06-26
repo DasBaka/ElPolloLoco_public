@@ -15,7 +15,6 @@ class World extends Drawable {
    textObjects;
 
    // camera movement
-   groundMaxSpeed;
    cameraX;
    levelEnd;
 
@@ -34,7 +33,6 @@ class World extends Drawable {
       super();
       this.level = new Level(level);
       this.createBaseWorld(this.level);
-      this.groundMaxSpeed = groundMaxSpd;
       this.generateWorld();
       this.setWorldForAll(this.baseWorld());
       this.resetSpawns();

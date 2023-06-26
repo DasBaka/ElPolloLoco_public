@@ -7,6 +7,7 @@ class Coin extends AnimatableObject {
       this.loadImage(this.path);
       this.prepareImage();
       this.y = y * canvasHeight;
+      this.speedX_rel = groundMaxSpdRel;
       this.letSpawn(x);
       this.loadAnimations();
    }
@@ -25,16 +26,11 @@ class Coin extends AnimatableObject {
       }
    }
 
-   refreshSpeed() {
-      let speed = groundMaxSpd * this.fasterIfHit();
-      this.speedX = speed;
-   }
-
    fasterIfHit() {
       if (this.world?.character.invulnerability()) {
-         return 1.5;
+         return this.speedX_rel * 1.5;
       } else {
-         return 1;
+         return this.speedX_rel;
       }
    }
 }

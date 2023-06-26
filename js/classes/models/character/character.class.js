@@ -4,6 +4,13 @@ class Character extends JumpableObject {
 
    world;
 
+   /**
+    * Interval for setting timestamps if object is idle.
+    */
+   idleInterval = setInterval(() => {
+      this.setIdleTime();
+   }, msPerCheck);
+
    constructor(world) {
       super().fetchData();
       this.loadImage(this.path);
@@ -33,7 +40,7 @@ class Character extends JumpableObject {
    left() {
       if (this.validateLeft()) {
          this.moveLeft();
-         this.world.levelEnd -= this.world.groundMaxSpeed;
+         this.world.levelEnd -= groundMaxSpdRel * canvasWidth;
          this.otherDirection = true;
       } else if (this.x < this.spawnX) {
          this.x = this.spawnX;
@@ -48,7 +55,7 @@ class Character extends JumpableObject {
    right() {
       if (this.validateRight()) {
          this.moveRight();
-         this.world.levelEnd += this.world.groundMaxSpeed;
+         this.world.levelEnd += groundMaxSpdRel * canvasWidth;
          this.otherDirection = false;
       }
    }

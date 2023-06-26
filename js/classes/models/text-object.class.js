@@ -6,6 +6,7 @@ class TextObject extends MovableObject {
    constructor(textArr, x) {
       super();
       this.letSpawn(x);
+      this.speedX_rel = groundMaxSpdRel;
       this.convertText(textArr);
       this.size = textArr.size;
    }
@@ -45,16 +46,11 @@ class TextObject extends MovableObject {
       }
    }
 
-   refreshSpeed() {
-      let speed = groundMaxSpd * this.fasterIfHit();
-      this.speedX = speed;
-   }
-
    fasterIfHit() {
       if (this.world?.character.invulnerability()) {
-         return 1.5;
+         return this.speedX_rel * 1.5;
       } else {
-         return 1;
+         return this.speedX_rel;
       }
    }
 }

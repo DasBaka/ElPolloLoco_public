@@ -3,10 +3,6 @@ class MediumChicken extends SmallChicken {
 
    world;
 
-   detectPlayer = setInterval(() => {
-      this.changeDirection();
-   }, msPerCheck);
-
    constructor(spawn) {
       super().fetchData();
       this.loadImage(this.path);
@@ -41,16 +37,10 @@ class MediumChicken extends SmallChicken {
    }
 
    playerIsLeft() {
-      return (
-         this.world?.character.x - followCoeff * this.w >= this.x &&
-         this.speedX > 0
-      );
+      return this.world?.character.x - followCoeff * this.w >= this.x && this.speedX > 0;
    }
 
    playerIsRight() {
-      return (
-         this.world?.character.x + followCoeff * this.w <= this.x &&
-         this.speedX < 0
-      );
+      return this.world?.character.x + followCoeff * this.w <= this.x && this.speedX < 0;
    }
 }

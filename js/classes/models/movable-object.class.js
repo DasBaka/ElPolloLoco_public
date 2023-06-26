@@ -52,7 +52,11 @@ class MovableObject extends DrawableObject {
     */
    refreshSpeed() {
       let speedX = canvasWidth * this.fasterIfHit();
-      this.speedX = speedX;
+      if (Math.abs(speedX) < 1) {
+         this.speedX = speedX;
+      } else {
+         this.speedX = Math.round(speedX);
+      }
    }
 
    /**

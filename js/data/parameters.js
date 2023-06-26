@@ -9,7 +9,7 @@ let groundLevelRatio = 0.1;
 let groundLevel = Math.floor(canvasHeight * (1 - groundLevelRatio));
 
 // Timer
-const msPerFrame = 75;
+const msPerFrame = 80;
 const msPerMove = 8;
 const msPerCheck = 8;
 // time between hits to cancel multiple interval calls in seconds
@@ -21,9 +21,9 @@ const cancelInterval = 1500;
 
 // Global
 // global parameters for math
-const pepeSpeed = 0.0018;
+const pepeSpeed = 0.002;
 const bgBaseSpeed = 2;
-const groundMaxSpd = (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, 2.5)) * canvasWidth;
+const groundMaxSpdRel = (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, 2.5));
 const bottleLeftSidePosition = 0.165;
 const bottleRightSidePosition = 0.66;
 
