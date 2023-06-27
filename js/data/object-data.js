@@ -10,7 +10,7 @@ let drawableObjectData = {
 };
 
 let statusbarObjectData = {
-   maxHealth: 5,
+   maxHealth: 6,
    maxBottle: 3,
    startCoins: 0,
    startBottles: 0,
@@ -113,19 +113,19 @@ let throwableObjectData = {
 let heartsData = {
    activeIcon: heartIcon,
    offsetY: 0,
-   offsetX: 0,
+   offsetX: 8,
 };
 
 let coinData = {
    activeIcon: coinIcon,
    offsetY: 1,
-   offsetX: 11,
+   offsetX: 1,
 };
 
 let bottleData = {
    activeIcon: bottleIcon,
    offsetY: 3,
-   offsetX: 18,
+   offsetX: 19,
 };
 
 let coinObjectData = {

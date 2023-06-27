@@ -104,8 +104,7 @@ button:hover {
    display: flex;
    justify-content: right;
    height: 7.5%;
-   padding: 1.5%;
-   width: 97%;
+   padding: 0.5rem 1rem;
 }
 
 .sound-icon {
@@ -115,11 +114,12 @@ button:hover {
    background-size: contain;
    background-repeat: no-repeat;
    filter: opacity(66%);
+   padding-right: 0.5%;
 }
 
 input:checked + .sound-icon {
    background-image: url(../img/speaker-128.png);
-   padding-right: 0.36%;
+   padding-right: 0;
 }
 
 .canvas-overlay {
