@@ -74,16 +74,17 @@ class Drawable {
             let fs = txtObj.size * this.getFontSize();
             let y = maxTextHeight * canvasHeight + fs * i;
             this.ctx.font = fs + 'px Boogaloo';
-            this.addTextToMap(txtObj.text[i], txtObj.x, y);
+            this.addTextToMap(txtObj.text[i], txtObj.x, y, fs);
          }
       });
    }
 
-   addTextToMap(text, x, y) {
+   addTextToMap(text, x, y, lineWidth) {
       this.ctx.fillStyle = fillColor;
       this.ctx.fillText(text, x, y);
       if (this.canvas.width > 650 && this.canvas.height > 400) {
          this.ctx.strokeStyle = strokeColor;
+         this.ctx.lineWidth = lineWidth * 0.02;
          this.ctx.strokeText(text, x, y);
       }
    }

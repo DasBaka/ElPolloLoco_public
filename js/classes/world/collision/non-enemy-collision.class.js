@@ -26,19 +26,23 @@ class NonEnemyCollision {
       let char = this.world.character;
       let stats = this.world.statusbar;
       if (char.isColliding(coin)) {
+         stats.updateCoinValue(arr, index);
          if (this.isNotFullHealth(stats, char)) {
-            this.world.playAudio(GET_HEALTH_AUDIO);
-            stats.updateCoinValue(arr, index);
-            char.health += 1;
-         } else if (this.canCollectCoins(stats, char)) {
+            this.healCharacter(char, stats);
+         } else {
             this.world.playAudio(COIN_GRAB_AUDIO);
-            stats.updateCoinValue(arr, index);
          }
       }
    }
 
+   healCharacter(char, stats) {
+      this.world.playAudio(GET_HEALTH_AUDIO);
+      stats.currentCoinAmount -= 10;
+      char.health += 1;
+   }
+
    isNotFullHealth(stats, char) {
-      return stats.currentCoinAmount == 9 && char.health < stats.maxHealth;
+      return stats.currentCoinAmount >= 10 && char.health < stats.maxHealth;
    }
 
    canCollectCoins(stats, char) {
@@ -50,6 +54,7 @@ class NonEnemyCollision {
       let stats = this.world.statusbar;
       if (char.isColliding(bottle)) {
          if (stats.bottleAmount == stats.maxBottle) {
+            this.world.playAudio(DENIED_AUDIO);
             return;
          } else {
             this.world.playAudio(COLLECT_BOTTLE_AUDIO);

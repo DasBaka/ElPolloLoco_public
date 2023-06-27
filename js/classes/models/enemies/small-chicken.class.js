@@ -18,18 +18,28 @@ class SmallChicken extends JumpableObject {
    }
 
    left() {
-      if (this.isInsideCanvas(this.x)) {
+      if (this.validateLeft()) {
          this.refreshSpeed();
          if (this.pauseInterval) {
             this.speedX = 0;
          }
-         if (this instanceof MediumChicken) {
-            this.changeDirection();
-         }
+         this.changeDirection();
          this.moveLeft();
       } else if (this.isOutsideCanvas(this.spawnX)) {
-         this.x = this.spawnX;
+         this.stayAtSpawn();
       }
+   }
+
+   stayAtSpawn() {
+      this.x = this.spawnX;
+   }
+
+   validateLeft() {
+      return this.isInsideCanvas(this.x);
+   }
+
+   changeDirection() {
+      return;
    }
 
    isWalking() {

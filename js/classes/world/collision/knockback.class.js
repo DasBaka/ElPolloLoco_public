@@ -37,5 +37,15 @@ class Knockback {
          enableKeys();
          this.world.pauseInterval(this.world.enemies, false);
       }
+      this.potentialHeal();
+   }
+
+   potentialHeal() {
+      let char = this.world.character;
+      let stats = this.world.statusbar;
+      let ref = this.world.nonEnemyCollision;
+      if (ref.isNotFullHealth(stats, char)) {
+         ref.healCharacter(char, stats);
+      }
    }
 }

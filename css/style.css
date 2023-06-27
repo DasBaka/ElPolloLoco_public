@@ -1,6 +1,7 @@
 html {
    height: 100%;
    font-family: 'Boogaloo', sans-serif;
+   overflow: hidden;
 }
 
 main,
@@ -143,21 +144,21 @@ input:checked + .sound-icon {
 
 .mobile-buttons-nav {
    display: none;
-   height: 15%;
+   height: 12.5%;
    justify-content: space-between;
-   padding: 1rem 0.75rem;
+   padding: 0.75rem;
 }
 
 .mobile-buttons-wrapper {
    display: flex;
-   width: 33%;
+   width: 40%;
    align-items: center;
    justify-content: space-around;
 }
 
 .mobile-buttons-wrapper .mobile-button {
    height: 100%;
-   width: 40%;
+   width: 33%;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -167,7 +168,7 @@ input:checked + .sound-icon {
    margin-inline-end: 0;
    background-color: wheat;
    border-radius: 1.25rem;
-   filter: opacity(80%);
+   filter: grayscale(25%) opacity(66%);
    border-width: 1px;
    padding: 0.5rem;
    background-size: contain;

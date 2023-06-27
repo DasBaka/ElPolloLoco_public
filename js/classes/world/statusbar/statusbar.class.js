@@ -15,18 +15,8 @@ class Statusbar extends DrawableObject {
    maxBottle;
 
    updateStats = setInterval(() => {
-      this.checkStatValues(
-         this.hearts,
-         this.currentHealth(),
-         heartsData,
-         this.maxHealth
-      );
-      this.checkStatValues(
-         this.bottle,
-         this.bottleAmount,
-         bottleData,
-         this.maxBottle
-      );
+      this.checkStatValues(this.hearts, this.currentHealth(), heartsData, this.maxHealth);
+      this.checkStatValues(this.bottle, this.bottleAmount, bottleData, this.maxBottle);
       this.renderCoinText();
       this.isMaxValue();
    }, msPerCheck);
@@ -49,9 +39,7 @@ class Statusbar extends DrawableObject {
    }
 
    renderIcons(arr, data, statNum) {
-      arr.push(
-         new Icon(data.activeIcon, statNum, data.offsetY, data.offsetX)
-      );
+      arr.push(new Icon(data.activeIcon, statNum, data.offsetY, data.offsetX));
    }
 
    initIcons(arr, data, statnum) {
@@ -81,7 +69,6 @@ class Statusbar extends DrawableObject {
    updateCoinValue(arr, index) {
       arr.splice(index, 1);
       this.currentCoinAmount += 1;
-      this.currentCoinAmount = this.currentCoinAmount % 10;
    }
 
    updateBottleValue(arr, index) {
@@ -91,18 +78,9 @@ class Statusbar extends DrawableObject {
       this.world.respawnBottle(self);
    }
 
-   determineMaxValueReached() {
-      if (this.isMaxValue()) {
-      }
-   }
-
    isMaxValue() {
-      let itemArray = [this.hearts, this.coin, this.bottle];
-      let checkArray = [
-         this.heartsIsMax(),
-         this.coinIsMax(),
-         this.bottleIsMax(),
-      ];
+      let itemArray = [this.hearts, this.bottle];
+      let checkArray = [this.heartsIsMax(), this.bottleIsMax()];
       let maxArray = [];
       itemArray.forEach((array, index) => {
          if (checkArray[index]) {
@@ -125,9 +103,7 @@ class Statusbar extends DrawableObject {
    heartsIsMax() {
       return this.world.character.health == this.maxHealth;
    }
-   coinIsMax() {
-      return this.heartsIsMax() && this.currentCoinAmount == 9;
-   }
+
    bottleIsMax() {
       return this.bottleAmount == this.maxBottle;
    }

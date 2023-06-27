@@ -80,8 +80,7 @@ class AnimatableObject extends MovableObject {
       } else if (this.isWalking()) {
          this.playAnimation(this.walking);
       } else if (this.isLongIdle()) {
-         this.otherDirection = false;
-         this.playAnimation(this.longIdle);
+         this.snoring();
       } else this.playAnimation(this.idle);
    }
 
@@ -201,5 +200,9 @@ class AnimatableObject extends MovableObject {
          this.img = this.imgCache[path];
          this.currentImg++;
       }
+   }
+
+   snoring() {
+      return;
    }
 }

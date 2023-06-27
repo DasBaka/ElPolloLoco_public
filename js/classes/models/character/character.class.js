@@ -1,6 +1,7 @@
 class Character extends JumpableObject {
    data = characterClassData;
    isAbove = false;
+   snoringInterval;
 
    world;
 
@@ -80,6 +81,7 @@ class Character extends JumpableObject {
       return (
          (this.validateLeft() || this.validateRight()) &&
          !JUMP &&
+         !this.inAir &&
          this.y == this.spawnY &&
          !this.mtplBtnPress()
       );
@@ -126,5 +128,24 @@ class Character extends JumpableObject {
    endGravity() {
       super.endGravity();
       this.isAbove = false;
+   }
+
+   snoring() {
+      this.otherDirection = false;
+      this.world.playAudio(SNORE_AUDIO);
+      this.playAnimation(this.longIdle);
+      this.cancelSnoring();
+   }
+
+   cancelSnoring() {
+      if (this.snoringInterval == undefined) {
+         this.snoringInterval = setInterval(() => {
+            if (!this.isLongIdle()) {
+               SNORE_AUDIO.object.pause();
+               clearInterval(this.snoringInterval);
+               this.snoringInterval = undefined;
+            }
+         }, msPerCheck);
+      }
    }
 }

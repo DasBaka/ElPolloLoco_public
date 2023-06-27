@@ -49,14 +49,17 @@ class BigChicken extends MediumChicken {
 
    left() {
       if (!this.resizingState) {
-         if (this.isInsideCanvas(this.x) || this.hasSeenTheCharacter) {
-            this.refreshSpeed();
-            this.moveLeft();
-         } else if (this.isOutsideCanvas(this.spawnX)) {
-            this.x = this.spawnX;
-            BOSS_BGM_AUDIO.object.pause();
-         }
+         super.left();
       }
+   }
+
+   validateLeft() {
+      return this.isInsideCanvas(this.x) || this.hasSeenTheCharacter;
+   }
+
+   stayAtSpawn() {
+      super.stayAtSpawn();
+      BOSS_BGM_AUDIO.object.pause();
    }
 
    adjustParameterToOwnHeight(ratio) {
