@@ -88,43 +88,34 @@
                   onchange="muteAllAudio(); initialBGMStart(); "
                   type="checkbox" /><label for="sound" class="sound-icon"></label>
             </div>
-            <div class="mobile-buttons">
+            <div class="mobile-buttons-nav">
                <div class="mobile-buttons-wrapper">
-                  <figure
-                     ontouchstart="keyCases({code: LEFT_Btn}, true)"
-                     ontouchend="keyCases({code: LEFT_Btn}, false)">
-                     <img
-                        oncontextmenu="return false"
-                        src="img/mobile_buttons/arrow-98-256.ico"
-                        alt="arrow-left-button" />
-                  </figure>
-                  <figure
-                     ontouchstart="keyCases({code: RIGHT_Btn}, true)"
-                     ontouchend="keyCases({code: RIGHT_Btn}, false)">
-                     <img
-                        oncontextmenu="return false"
-                        src="img/mobile_buttons/arrow-33-256.ico"
-                        alt="arrow-right-button" />
-                  </figure>
+                  <button
+                     oncontextmenu="return false;"
+                     name="mobile-button"
+                     class="mobile-button btn-left"
+                     type="button"
+                     value="LEFT_Btn"></button>
+                  <button
+                     oncontextmenu="return false;"
+                     name="mobile-button"
+                     class="mobile-button btn-right"
+                     type="button"
+                     value="RIGHT_Btn"></button>
                </div>
                <div class="mobile-buttons-wrapper">
-                  <figure
-                     oncontextmenu="return false"
-                     ontouchstart="keyCases({code: THROW_Btn}, true)"
-                     ontouchend="keyCases({code: THROW_Btn}, false)">
-                     <img
-                        oncontextmenu="return false"
-                        src="img/mobile_buttons/bottle-7-256.ico"
-                        alt="bottle-button" />
-                  </figure>
-                  <figure
-                     ontouchstart="keyCases({code: JUMP_Btn}, true)"
-                     ontouchend="keyCases({code: JUMP_Btn}, false)">
-                     <img
-                        oncontextmenu="return false"
-                        src="img/mobile_buttons/arrow-151-256.ico"
-                        alt="arrow-up-button" />
-                  </figure>
+                  <button
+                     oncontextmenu="return false;"
+                     name="mobile-button"
+                     class="mobile-button btn-throw"
+                     type="button"
+                     value="THROW_Btn"></button>
+                  <button
+                     oncontextmenu="return false;"
+                     name="mobile-button"
+                     class="mobile-button btn-jump"
+                     type="button"
+                     value="JUMP_Btn"></button>
                </div>
             </div>
          </div>

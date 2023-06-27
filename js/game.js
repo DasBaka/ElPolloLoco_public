@@ -40,6 +40,22 @@ window.addEventListener('keyup', (e) => {
    keyCases(e, false);
 });
 
+window.addEventListener('touchstart', (e) => {
+   if (e.target.getAttribute('name') == 'mobile-button') {
+      let el = {};
+      el.code = eval(e.target.value);
+      keyCases(el, true);
+   }
+});
+
+window.addEventListener('touchend', (e) => {
+   if (e.target.getAttribute('name') == 'mobile-button') {
+      let el = {};
+      el.code = eval(e.target.value);
+      keyCases(el, false);
+   }
+});
+
 function keyCases(el, state) {
    if (!KEYS_disabled) {
       if (el.code == JUMP_Btn /* || el.code == JUMP_Btn_alt */) {
