@@ -22,7 +22,7 @@ const cancelInterval = 1500;
 // Global
 // global parameters for math
 const pepeSpeed = 0.0025;
-const bgBaseSpeed = 2;
+const speedMultiplierAfterHit = 1.25;
 const bottleLeftSidePosition = 0.165;
 const bottleRightSidePosition = 0.66;
 

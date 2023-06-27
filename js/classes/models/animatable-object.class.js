@@ -18,7 +18,7 @@ class AnimatableObject extends MovableObject {
    /**
     * Interval for animations.
     */
-   animationInterval;
+   animationInterval = setInterval(() => this.chooseAnimation(), msPerFrame);
 
    constructor() {
       super();
@@ -201,15 +201,5 @@ class AnimatableObject extends MovableObject {
          this.img = this.imgCache[path];
          this.currentImg++;
       }
-   }
-
-   checkForIntervals() {
-      if (this.startIntervalsCondition(this.animationInterval)) {
-         this.animationInterval = setInterval(() => this.chooseAnimation(), msPerFrame);
-      }
-   }
-
-   startIntervalsCondition(fn) {
-      return this.isInsideCanvas(this.x) && fn == undefined;
    }
 }

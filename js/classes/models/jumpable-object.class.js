@@ -7,7 +7,9 @@ class JumpableObject extends AnimatableObject {
    /**
     * Interval to check for the jump condition.
     */
-   jumpInterval;
+   jumpInterval = (this.jumpInterval = setInterval(() => {
+      this.jump();
+   }, msPerMove));
 
    constructor() {
       super();
@@ -211,14 +213,5 @@ class JumpableObject extends AnimatableObject {
     */
    characterGotHit() {
       return false;
-   }
-
-   checkForIntervals() {
-      super.checkForIntervals();
-      if (this.startIntervalsCondition(this.jumpInterval)) {
-         this.jumpInterval = setInterval(() => {
-            this.jump();
-         }, msPerMove);
-      }
    }
 }
