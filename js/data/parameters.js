@@ -10,8 +10,8 @@ let groundLevel = Math.floor(canvasHeight * (1 - groundLevelRatio));
 
 // Timer
 const msPerFrame = 80;
-const msPerMove = 8;
-const msPerCheck = 8;
+const msPerMove = 16;
+const msPerCheck = 16;
 // time between hits to cancel multiple interval calls in seconds
 const invulnerabilityFrames = 0.9;
 // Bottle Cooldown
@@ -21,9 +21,9 @@ const cancelInterval = 1500;
 
 // Global
 // global parameters for math
-const pepeSpeed = 0.002;
+const pepeSpeed = 0.005;
 const bgBaseSpeed = 2;
-const groundMaxSpdRel = (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, 2.5));
+const groundMaxSpdRel = ((pepeSpeed / 4) * 3 * -1) / 3;
 const bottleLeftSidePosition = 0.165;
 const bottleRightSidePosition = 0.66;
 
@@ -37,9 +37,9 @@ const largeFont = 3.6;
 
 // Gravitation
 const adjustJumpInterval = 1.25;
-const acceleration = 1 / 4250;
-const speedAfterHit = 0.004;
-const pepeJumpSpeed = 0.0072;
+const acceleration = 1 / 1000;
+const speedAfterHit = 0.0075;
+const pepeJumpSpeed = 0.015;
 const bumpCoeff = -1.025;
 
 // hitbox adjustments of enemy collision detection

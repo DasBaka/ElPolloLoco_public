@@ -8,7 +8,7 @@ class BackgroundObject extends MovableObject {
       this.loadImage(path);
       // Recalculates the speed of the background object to create a parallax effect.
       // Note: This results in a negative speed to move with the Character in opposing directions!
-      this.speedX_rel = (pepeSpeed / 10) * (1 - Math.pow(bgBaseSpeed, speed + 0.5));
+      this.speedX_rel = ((pepeSpeed / 4) * (speed + 1) * -1) / 3;
       this.x_rel = x * this.w_rel;
       this.prepareImage();
       this.refreshSpeed();
