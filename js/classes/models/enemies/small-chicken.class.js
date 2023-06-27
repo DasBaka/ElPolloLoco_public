@@ -4,15 +4,6 @@ class SmallChicken extends JumpableObject {
    savePosition = 0;
    world;
 
-   adjustSpawnInterval = setInterval(() => {
-      if (LEFT && !LEFT_disabled && this.world.character.health != 0) {
-         this.spawnX -= groundMaxSpdRel * canvasWidth;
-      }
-      if (RIGHT && !RIGHT_disabled && this.world.character.health != 0) {
-         this.spawnX += groundMaxSpdRel * canvasWidth;
-      }
-   }, msPerCheck);
-
    constructor(spawn) {
       super().fetchData();
       this.loadImage(this.path);
@@ -28,40 +19,16 @@ class SmallChicken extends JumpableObject {
 
    left() {
       if (this.isInsideCanvas(this.x)) {
-         this.speedAdjustment();
+         this.refreshSpeed();
+         if (this.pauseInterval) {
+            this.speedX = 0;
+         }
          if (this instanceof MediumChicken) {
             this.changeDirection();
          }
          this.moveLeft();
       } else if (this.isOutsideCanvas(this.spawnX)) {
          this.x = this.spawnX;
-      }
-   }
-
-   speedAdjustment() {
-      this.refreshSpeed();
-      if (this.pauseInterval) {
-         this.syncToCharHit();
-      } else {
-         this.syncToCharMovement();
-      }
-   }
-
-   syncToCharMovement() {
-      if (this.world?.character.validateLeft()) {
-         this.speedX += groundMaxSpdRel * canvasWidth;
-      }
-      if (this.world?.character.validateRight()) {
-         this.speedX -= groundMaxSpdRel * canvasWidth;
-      }
-   }
-
-   syncToCharHit() {
-      if (this.world?.character.validateLeft()) {
-         this.speedX = groundMaxSpdRel * canvasWidth * 1.5;
-      }
-      if (this.world?.character.validateRight()) {
-         this.speedX = -groundMaxSpdRel * canvasWidth * 1.5;
       }
    }
 

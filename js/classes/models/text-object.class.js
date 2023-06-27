@@ -6,7 +6,6 @@ class TextObject extends MovableObject {
    constructor(textArr, x) {
       super();
       this.letSpawn(x);
-      this.speedX_rel = groundMaxSpdRel;
       this.convertText(textArr);
       this.size = textArr.size;
    }
@@ -21,36 +20,5 @@ class TextObject extends MovableObject {
       array.forEach((e) => {
          this.text.push(e);
       });
-   }
-
-   /**
-    * Left moving.
-    * Alternately: Stops movement at the beginning of the level.
-    */
-   left() {
-      if (this.validateLeft()) {
-         this.refreshSpeed();
-         this.moveLeft();
-      } else if (this.x > this.spawnX) {
-         this.x = this.spawnX;
-      }
-   }
-
-   /**
-    * Right movement.
-    */
-   right() {
-      if (this.validateRight()) {
-         this.refreshSpeed();
-         this.moveRight();
-      }
-   }
-
-   fasterIfHit() {
-      if (this.world?.character.invulnerability()) {
-         return this.speedX_rel * 1.5;
-      } else {
-         return this.speedX_rel;
-      }
    }
 }

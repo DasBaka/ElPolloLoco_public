@@ -21,9 +21,8 @@ const cancelInterval = 1500;
 
 // Global
 // global parameters for math
-const pepeSpeed = 0.0016;
+const pepeSpeed = 0.0025;
 const bgBaseSpeed = 2;
-const groundMaxSpdRel = -(pepeSpeed / 4) * 3;
 const bottleLeftSidePosition = 0.165;
 const bottleRightSidePosition = 0.66;
 

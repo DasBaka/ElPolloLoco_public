@@ -61,6 +61,11 @@ window.addEventListener('blur', () => {
    LEFT = false;
    RIGHT = false;
    JUMP = false;
+   let sound = document.getElementById('sound');
+   if (sound.checked) {
+      muteAllAudio();
+   }
+   sound.checked = false;
 });
 
 window.addEventListener('orientationchange', () => {

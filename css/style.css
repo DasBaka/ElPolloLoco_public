@@ -18,6 +18,7 @@ body {
    width: 100%;
    background-color: wheat;
    background-image: url(../img/5_background/complete_background.png);
+   background-repeat: no-repeat;
    background-size: cover;
    background-blend-mode: luminosity;
 }
@@ -110,14 +111,14 @@ button:hover {
 .sound-icon {
    height: 100%;
    aspect-ratio: 1 / 1;
-   background-image: url(/img/mute-2-128.png);
+   background-image: url(../img/mute-2-128.png);
    background-size: contain;
    background-repeat: no-repeat;
    filter: opacity(66%);
 }
 
 input:checked + .sound-icon {
-   background-image: url(/img/speaker-128.png);
+   background-image: url(../img/speaker-128.png);
    padding-right: 0.36%;
 }
 
@@ -128,7 +129,7 @@ input:checked + .sound-icon {
 }
 
 .main-menu {
-   background-image: url(/img/9_intro_outro_screens/start/startscreen_2.png);
+   background-image: url(../img/9_intro_outro_screens/start/startscreen_2.png);
    border-radius: 1.25rem;
    background-size: contain;
    background-repeat: no-repeat;
@@ -167,6 +168,9 @@ input:checked + .sound-icon {
    background-color: wheat;
    border-radius: 1.25rem;
    filter: opacity(75%);
+   -webkit-user-select: none;
+   user-select: none;
+   -webkit-touch-callout: none;
 }
 
 .mobile-buttons-wrapper figure:hover {

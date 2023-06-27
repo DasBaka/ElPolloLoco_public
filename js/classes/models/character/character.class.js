@@ -40,7 +40,7 @@ class Character extends JumpableObject {
    left() {
       if (this.validateLeft()) {
          this.moveLeft();
-         this.world.levelEnd -= groundMaxSpdRel * canvasWidth;
+         this.world.levelEnd -= this.speedX;
          this.otherDirection = true;
       } else if (this.x < this.spawnX) {
          this.x = this.spawnX;
@@ -55,7 +55,7 @@ class Character extends JumpableObject {
    right() {
       if (this.validateRight()) {
          this.moveRight();
-         this.world.levelEnd += groundMaxSpdRel * canvasWidth;
+         this.world.levelEnd += this.speedX;
          this.otherDirection = false;
       }
    }
