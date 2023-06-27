@@ -55,6 +55,10 @@
       <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
    </head>
    <body onload="renderSite()">
+      <h1>
+         Please turn your device<br />
+         to landscape mode!
+      </h1>
       <main>
          <canvas id="canvas"></canvas>
          <div class="canvas-overlay mobile-view" id="mobile">
@@ -86,12 +90,28 @@
             </div>
             <div class="mobile-buttons">
                <div class="mobile-buttons-wrapper">
-                  <figure>&#8678;</figure>
-                  <figure>&#8680;</figure>
+                  <figure
+                     onmousedown="keyCases({code: LEFT_Btn}, true)"
+                     onmouseup="keyCases({code: LEFT_Btn}, false)">
+                     <img src="img/mobile_buttons/arrow-98-256.ico" alt="arrow-left-button" />
+                  </figure>
+                  <figure
+                     onmousedown="keyCases({code: RIGHT_Btn}, true)"
+                     onmouseup="keyCases({code: RIGHT_Btn}, false)">
+                     <img src="img/mobile_buttons/arrow-33-256.ico" alt="arrow-right-button" />
+                  </figure>
                </div>
                <div class="mobile-buttons-wrapper">
-                  <figure>&#8679;</figure>
-                  <figure>SPACE</figure>
+                  <figure
+                     onmousedown="keyCases({code: THROW_Btn}, true)"
+                     onmouseup="keyCases({code: THROW_Btn}, false)">
+                     <img src="img/mobile_buttons/bottle-7-256.ico" alt="bottle-button" />
+                  </figure>
+                  <figure
+                     onmousedown="keyCases({code: JUMP_Btn}, true)"
+                     onmouseup="keyCases({code: JUMP_Btn}, false)">
+                     <img src="img/mobile_buttons/arrow-151-256.ico" alt="arrow-up-button" />
+                  </figure>
                </div>
             </div>
          </div>

@@ -82,7 +82,7 @@ class Drawable {
    addTextToMap(text, x, y) {
       this.ctx.fillStyle = fillColor;
       this.ctx.fillText(text, x, y);
-      if (this.canvas.width > 650) {
+      if (this.canvas.width > 650 && this.canvas.height > 400) {
          this.ctx.strokeStyle = strokeColor;
          this.ctx.strokeText(text, x, y);
       }

@@ -22,10 +22,12 @@ body {
    background-blend-mode: luminosity;
 }
 
+body > h1 {
+   display: none;
+}
+
 main {
    position: relative;
-   width: clamp(75%, calc(60vw + 288px), 100%);
-   aspect-ratio: 16 / 9;
 }
 
 main,
@@ -100,9 +102,9 @@ button:hover {
 .settings {
    display: flex;
    justify-content: right;
-   height: 6%;
-   padding: 1%;
-   width: 98%;
+   height: 7.5%;
+   padding: 1.5%;
+   width: 97%;
 }
 
 .sound-icon {
@@ -122,12 +124,15 @@ input:checked + .sound-icon {
 .canvas-overlay {
    display: flex;
    position: absolute;
+   width: clamp(75%, calc(60vw + 288px), 100%);
 }
 
 .main-menu {
    background-image: url(/img/9_intro_outro_screens/start/startscreen_2.png);
    border-radius: 1.25rem;
-   background-size: 100%;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
 }
 
 .mobile-view {
@@ -135,15 +140,48 @@ input:checked + .sound-icon {
    flex-direction: column;
 }
 
-.mobile-view .mobile-buttons {
+.mobile-buttons {
    display: none;
+   height: 15%;
    justify-content: space-between;
+   padding: 1rem 0.75rem;
 }
 
 .mobile-buttons-wrapper {
    display: flex;
+   width: 33%;
    align-items: center;
-   justify-content: space-between;
+   justify-content: space-around;
+}
+
+.mobile-buttons-wrapper figure {
+   height: 100%;
+   width: 40%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-block-start: 0;
+   margin-block-end: 0;
+   margin-inline-start: 0;
+   margin-inline-end: 0;
+   background-color: wheat;
+   border-radius: 1.25rem;
+   filter: opacity(75%);
+}
+
+.mobile-buttons-wrapper figure:hover {
+   scale: 1.025;
+   filter: opacity(90%);
+}
+
+.mobile-buttons-wrapper figure:hover img {
+   filter: none;
+}
+
+.mobile-buttons-wrapper figure img {
+   object-fit: contain;
+   height: 75%;
+   filter: grayscale(25%);
 }
 
 #start {
@@ -161,7 +199,7 @@ input:checked + .sound-icon {
    display: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) or (max-height: 600px) {
    .mobile-view .mobile-buttons {
       display: flex;
    }
@@ -176,5 +214,23 @@ input:checked + .sound-icon {
 
       /* Safari resize fix */
       min-height: 0vw;
+   }
+}
+
+@media only screen and (orientation: portrait) {
+   main {
+      display: none;
+   }
+
+   body > h1 {
+      display: flex;
+      font-size: 5rem;
+      font-weight: normal;
+      text-align: center;
+   }
+
+   body {
+      background-blend-mode: lighten;
+      background-color: darkgray;
    }
 }

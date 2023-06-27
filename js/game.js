@@ -2,10 +2,15 @@ let world;
 let modal;
 
 muteAllAudio();
+screen.orientation.lock('landscape').catch(() => {
+   return;
+});
 
 function renderSite() {
    modal = document.getElementById('modal');
-   modal.parentElement.style.width = canvasWidth + 'px';
+   modal.parentElement.parentElement.style.height =
+      Math.min(Math.max(0.6 * canvasWidth + 288, 0.75 * canvasWidth), canvasWidth) * heightRatio +
+      'px';
    prepareMainMenu(true);
 }
 
@@ -58,9 +63,11 @@ window.addEventListener('blur', () => {
    JUMP = false;
 });
 
-/* window.addEventListener('orientationchange', () => {
-   window.location.reload();
-}); */
+window.addEventListener('orientationchange', () => {
+   if (window.innerHeight > window.innerWidth) {
+      window.location.reload();
+   }
+});
 
 function showEndModal(state) {
    let div = document.getElementById('inside-modal');
