@@ -14,6 +14,7 @@ class MovableObject extends DrawableObject {
       this.left();
       this.right();
       this.cameraCheck();
+      this.checkForIntervals();
    }, msPerMove);
 
    constructor() {
@@ -52,11 +53,7 @@ class MovableObject extends DrawableObject {
     */
    refreshSpeed() {
       let speedX = canvasWidth * this.fasterIfHit();
-      if (Math.abs(speedX) < 1) {
-         this.speedX = speedX;
-      } else {
-         this.speedX = Math.round(speedX);
-      }
+      this.speedX = speedX;
    }
 
    /**
@@ -223,5 +220,9 @@ class MovableObject extends DrawableObject {
     */
    validateRight() {
       return RIGHT && !RIGHT_disabled && this.world.character.health != 0;
+   }
+
+   checkForIntervals() {
+      return;
    }
 }

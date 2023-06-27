@@ -21,6 +21,8 @@ class DrawableObject {
    spawnX;
    spawnY;
 
+   checkInterval;
+
    constructor() {
       this.fetchData();
    }

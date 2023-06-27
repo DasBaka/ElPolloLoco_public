@@ -9,34 +9,9 @@ class BigChicken extends MediumChicken {
    resizePointY;
    resizingState;
 
-   resizeInterval = setInterval(() => {
-      let ratio = this.w / this.h;
+   resizeInterval;
 
-      if (this.healthRatio() < this.sizeRatio()) {
-         this.resizingState = true;
-         this.h -= (1 / this.resizingAmount) * canvasHeight;
-         this.adjustParameterToOwnHeight(ratio);
-      } else if (this.sizeRatio() < 0) {
-         clearInterval(this.resizeInterval);
-      } else if (this.healthRatio() > this.sizeRatio() && this.healthRatio() != this.sizeRatio()) {
-         this.h = this.originalSize * this.healthRatio();
-         this.adjustParameterToOwnHeight(ratio);
-         this.resizePointY -= this.h * 0.0125;
-         this.resizingState = false;
-         this.refreshSpeedAfterResize();
-      }
-   }, msPerCheck);
-
-   stateCheckInterval = setInterval(() => {
-      if (this.health == 0 && !this.resizingState) {
-         this.bossDefeated();
-      }
-      if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
-         this.world.playAudio(BOSS_BGM_AUDIO);
-         this.hasSeenTheCharacter = true;
-         this.world.silenceBGM(BGM_AUDIO);
-      }
-   });
+   stateCheckInterval;
 
    constructor(spawn) {
       super().fetchData();
@@ -114,5 +89,41 @@ class BigChicken extends MediumChicken {
       char.endInterval(char.movementInterval);
       char.endInterval(char.animationInterval);
       char.endInterval(char.jumpInterval);
+   }
+
+   checkForIntervals() {
+      super.checkForIntervals();
+      if (this.startIntervalsCondition(this.resizeInterval)) {
+         this.jumpInterval = setInterval(() => {
+            let ratio = this.w / this.h;
+            if (this.healthRatio() < this.sizeRatio()) {
+               this.resizingState = true;
+               this.h -= (1 / this.resizingAmount) * canvasHeight;
+               this.adjustParameterToOwnHeight(ratio);
+            } else if (this.sizeRatio() < 0) {
+               clearInterval(this.resizeInterval);
+            } else if (
+               this.healthRatio() > this.sizeRatio() &&
+               this.healthRatio() != this.sizeRatio()
+            ) {
+               this.h = this.originalSize * this.healthRatio();
+               this.adjustParameterToOwnHeight(ratio);
+               this.resizePointY -= this.h * 0.0125;
+               this.resizingState = false;
+               this.refreshSpeedAfterResize();
+            }
+         }, msPerCheck);
+      }
+      if (this.startIntervalsCondition(this.stateCheckInterval)) {
+         this.stateCheckInterval = setInterval(() => {
+            if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
+               this.world.playAudio(BOSS_BGM_AUDIO);
+               this.hasSeenTheCharacter = true;
+               this.world.silenceBGM(BGM_AUDIO);
+            } else if (this.health == 0 && !this.resizingState) {
+               this.bossDefeated();
+            }
+         });
+      }
    }
 }
