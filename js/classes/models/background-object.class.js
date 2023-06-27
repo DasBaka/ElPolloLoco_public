@@ -19,6 +19,8 @@ class BackgroundObject extends MovableObject {
     * Because of some size differences, this function fixes some empty pixels.
     */
    bgFix() {
+      this.w = this.w + 1;
+      this.x = this.x + 1;
       this.y = 0;
       this.spawnY = 0;
    }

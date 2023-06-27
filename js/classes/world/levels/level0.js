@@ -1,11 +1,11 @@
 const level0 = {
    enemies: [
-      ['SmallChicken', 2.6],
-      ['SmallChicken', 3.25],
-      ['SmallChicken', 3.5],
-      ['MediumChicken', 5],
-      ['MediumChicken', 6],
-      ['MediumChicken', 6.5],
+      ['SmallChicken', 2.4],
+      ['SmallChicken', 2.8],
+      ['SmallChicken', 3.2],
+      ['MediumChicken', 4],
+      ['MediumChicken', 5.6],
+      ['MediumChicken', 5.9],
       ['SmallChicken', 8.4],
       ['SmallChicken', 8.5],
       ['SmallChicken', 8.6],
@@ -57,7 +57,7 @@ const level0 = {
       [14.5, 0.6],
    ],
    bottles: [5.75, 10.5, 12, 14.7, 14.9],
-   levelLength: 14,
+   levelLength: 13,
    text: [
       [startArrow, 0.0],
       [moveTutorial, 0.025],
