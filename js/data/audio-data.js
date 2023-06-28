@@ -99,10 +99,6 @@ let SNORE_AUDIO = {
    loop: true,
 };
 
-let DENIED_AUDIO = {
-   object: new Audio('audio/denied.mp3'),
-};
-
 let allAudio = [
    BGM_AUDIO,
    BOSS_BGM_AUDIO,
@@ -122,5 +118,4 @@ let allAudio = [
    WIN_AUDIO,
    LOOSE_AUDIO,
    SNORE_AUDIO,
-   DENIED_AUDIO,
 ];

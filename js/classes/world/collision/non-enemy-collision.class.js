@@ -54,7 +54,6 @@ class NonEnemyCollision {
       let stats = this.world.statusbar;
       if (char.isColliding(bottle)) {
          if (stats.bottleAmount == stats.maxBottle) {
-            this.world.playAudio(DENIED_AUDIO);
             return;
          } else {
             this.world.playAudio(COLLECT_BOTTLE_AUDIO);
