@@ -39,7 +39,7 @@ const largeFont = 3.6;
 const adjustJumpInterval = 1.25;
 const acceleration = 1 / 4000;
 const speedAfterHit = 0.004;
-const pepeJumpSpeed = 0.008;
+const pepeJumpSpeed = 0.0075;
 const bumpCoeff = -1.018;
 
 // hitbox adjustments of enemy collision detection

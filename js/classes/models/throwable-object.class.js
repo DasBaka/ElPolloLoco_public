@@ -93,15 +93,15 @@ class ThrowableObject extends JumpableObject {
     * Bottle's stats while thrown in mid air.
     */
    throwMidAir() {
-      this.speedX_rel = pepeSpeed * 1.8;
-      this.speedY_rel = 0.01;
+      this.speedX_rel = pepeSpeed * 1.75;
+      this.speedY_rel = 0.007;
    }
 
    /**
     * Bottle's stats while thrown while moving on the ground.
     */
    throwWithSpeed() {
-      this.speedX_rel = pepeSpeed * 3.6;
+      this.speedX_rel = pepeSpeed * 3;
       this.speedY_rel = 0.006;
    }
 
@@ -109,7 +109,7 @@ class ThrowableObject extends JumpableObject {
     * Bottle's stats while thrown while idle.
     */
    throwOnIdle() {
-      this.speedX_rel = pepeSpeed * 1.6;
+      this.speedX_rel = pepeSpeed * 1.5;
       this.speedY_rel = 0.008;
    }
 

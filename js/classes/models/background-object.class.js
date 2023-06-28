@@ -51,10 +51,12 @@ class BackgroundObject extends MovableObject {
          this.x = this.spawnX;
       }
    }
-
+   /**
+    * => see: {@link MovableObject.fasterIfHit()}
+    */
    fasterIfHit() {
       if (this.world?.character.invulnerability()) {
-         return this.speedX_rel * 1.5;
+         return this.speedX_rel * speedMultiplierAfterHit;
       } else {
          return this.speedX_rel;
       }

@@ -23,7 +23,7 @@ class MovableObject extends DrawableObject {
    }
 
    /**
-    * => see: {@link DrawableObject.fetchData}
+    * => see: {@link DrawableObject.fetchData()}
     */
    fetchData() {
       super.fetchData();
@@ -43,7 +43,7 @@ class MovableObject extends DrawableObject {
    right() {}
 
    /**
-    * Checks the current position based on the characters position. (see more: {@link Character.cameraCheck})
+    * Checks the current position based on the characters position. (see more: {@link Character.cameraCheck()})
     */
    cameraCheck() {}
 
@@ -94,7 +94,7 @@ class MovableObject extends DrawableObject {
    }
 
    /**
-    * If the object is a non-boss-enemy, this function calls their correspongin function (see: {@link SmallChicken.spawnCoinOnDeath})
+    * If the object is a non-boss-enemy, this function calls their correspongin function (see: {@link SmallChicken.spawnCoinOnDeath()})
     */
    chickensSpawnCoinsOnDeath() {
       if (this instanceof (SmallChicken || MediumChicken)) {
@@ -116,7 +116,7 @@ class MovableObject extends DrawableObject {
 
    /**
     * State of invulnaribility.
-    * If {@link timePassed} is false of the event {@link lastHit}, the object can't get hit again.
+    * If {@link timePassed()} is false of the event {@link lastHit}, the object can't get hit again.
     * @returns - boolean
     */
    invulnerability() {

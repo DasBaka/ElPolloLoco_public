@@ -59,7 +59,7 @@ class DrawableObject {
    }
 
    /**
-    * => see: {@link MovableObject.refreshSpeed}
+    * => see: {@link MovableObject.refreshSpeed()}
     */
    refreshSpeed() {}
 

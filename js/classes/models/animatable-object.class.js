@@ -26,7 +26,7 @@ class AnimatableObject extends MovableObject {
    }
 
    /**
-    * => see: {@link DrawableObject.fetchData}
+    * => see: {@link DrawableObject.fetchData()}
     */
    fetchData() {
       super.fetchData();
@@ -85,7 +85,7 @@ class AnimatableObject extends MovableObject {
    }
 
    /**
-    * Loads the animation image paths catched by {@link getFrames} and generates new Image classes.
+    * Loads the animation image paths catched by {@link getFrames()} and generates new Image classes.
     */
    loadAnimations() {
       this.associateFrames();
@@ -202,7 +202,8 @@ class AnimatableObject extends MovableObject {
       }
    }
 
-   snoring() {
-      return;
-   }
+   /**
+    * Function to active snoring effect on idle. See: {@link Character.snoring()}
+    */
+   snoring() {}
 }

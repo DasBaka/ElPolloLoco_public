@@ -16,7 +16,7 @@ class JumpableObject extends AnimatableObject {
    }
 
    /**
-    * In addition to {@link MovableObject.refreshSpeed} it now also recalculates the objects speedY.
+    * In addition to {@link MovableObject.refreshSpeed()} it now also recalculates the objects speedY.
     */
    refreshSpeed() {
       super.refreshSpeed();
@@ -41,7 +41,7 @@ class JumpableObject extends AnimatableObject {
    }
 
    /**
-    * Like {@link jump}, but with a smaller coefficient.
+    * Like {@link jump()}, but with a smaller coefficient.
     * Used to indicate a special feedback if hit / lost all health.
     */
    bump() {
@@ -53,7 +53,7 @@ class JumpableObject extends AnimatableObject {
    /**
     * "Death animation".
     * If the object reaches 0 health, this function lets the object do a small jump upwards before leaving the screen to the bottom.
-    * => ignores the {@link endJump} function!
+    * => ignores the {@link endJump()} function!
     */
    noHealthJump() {
       this.inAir = true;
@@ -200,7 +200,7 @@ class JumpableObject extends AnimatableObject {
    }
 
    /**
-    * => see: {@link Character.validateJumpBtn}
+    * => see: {@link Character.validateJumpBtn()}
     * @returns - boolean
     */
    validateJumpBtn() {
@@ -208,7 +208,7 @@ class JumpableObject extends AnimatableObject {
    }
 
    /**
-    * => see: {@link Character.characterGotHit}
+    * => see: {@link Character.characterGotHit()}
     * @returns boolean
     */
    characterGotHit() {
