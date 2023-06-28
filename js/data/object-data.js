@@ -13,7 +13,7 @@ let statusbarObjectData = {
    maxHealth: 6,
    maxBottle: 3,
    startCoins: 0,
-   startBottles: 0,
+   startBottles: 5,
 };
 
 let movableObjectData = {
@@ -89,12 +89,12 @@ let bigChickenClassData = {
    bottomOffset: 0.89,
    topOffset: 0.175,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.25,
+   enemySpeedConst: 0.24,
    animationCache: bigChickenAnimations,
    health: 5,
    maxHealth: 5,
    path: bigChickenAnimations['walking'][1],
-   resizingAmount: 300,
+   resizingAmount: 250,
 };
 
 let throwableObjectData = {

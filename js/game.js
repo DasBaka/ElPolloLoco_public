@@ -1,14 +1,8 @@
 let world;
 let modal;
 
-window.addEventListener('load', function () {
-   setTimeout(function () {
-      window.scrollTo(0, 1);
-   }, 0);
-   this.document.getElementById('body').style.overflow = 'hidden';
-});
-
 muteAllAudio();
+
 screen.orientation.lock('landscape').catch(() => {
    return;
 });

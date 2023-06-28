@@ -47,6 +47,10 @@ class BigChicken extends MediumChicken {
       return this.healthRatio() < this.sizeRatio();
    }
 
+   isHurt() {
+      return this.resizingState;
+   }
+
    resize(ratio) {
       this.resizingState = true;
       this.h -= (1 / this.resizingAmount) * canvasHeight;
