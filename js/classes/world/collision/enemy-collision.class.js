@@ -57,12 +57,12 @@ class EnemyCollision {
       if (!enemy.invulnerability()) {
          enemy.isHit();
          if (enemy instanceof BigChicken) {
-            char.speedY_rel *= -2;
+            char.speedY_rel *= -1.5;
          } else {
             char.bump();
-            this.world.playAudio(PEPE_JUMP_AUDIO);
-            this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO);
          }
+         this.world.playAudio(PEPE_JUMP_AUDIO);
+         this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO);
       }
    }
 

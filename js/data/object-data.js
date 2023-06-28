@@ -89,7 +89,7 @@ let bigChickenClassData = {
    bottomOffset: 0.89,
    topOffset: 0.175,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.3,
+   enemySpeedConst: 0.25,
    animationCache: bigChickenAnimations,
    health: 5,
    maxHealth: 5,

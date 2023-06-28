@@ -1,7 +1,6 @@
 html {
-   height: 100%;
+   height: 100lvh;
    font-family: 'Boogaloo', sans-serif;
-   overflow: hidden;
 }
 
 main,

@@ -9,29 +9,14 @@ class BigChicken extends MediumChicken {
    resizePointY;
    resizingState;
 
-   resizeInterval = setInterval(() => {
-      let ratio = this.w / this.h;
-      if (this.healthRatio() < this.sizeRatio()) {
-         this.resizingState = true;
-         this.h -= (1 / this.resizingAmount) * canvasHeight;
-         this.adjustParameterToOwnHeight(ratio);
-      } else if (this.sizeRatio() < 0) {
-         clearInterval(this.resizeInterval);
-      } else if (this.healthRatio() > this.sizeRatio() && this.healthRatio() != this.sizeRatio()) {
-         this.h = this.originalSize * this.healthRatio();
-         this.adjustParameterToOwnHeight(ratio);
-         this.resizePointY -= this.h * 0.0125;
-         this.resizingState = false;
-         this.refreshSpeedAfterResize();
-      }
-   }, msPerCheck);
+   resizeInterval = setInterval(() => this.canResize(), msPerCheck);
 
    stateCheckInterval = setInterval(() => {
       if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
          this.world.playAudio(BOSS_BGM_AUDIO);
          this.hasSeenTheCharacter = true;
          this.world.silenceBGM(BGM_AUDIO);
-      } else if (this.health == 0 && !this.resizingState) {
+      } else if (this.health == 0 && this.resizingState) {
          this.bossDefeated();
       }
    }, msPerCheck);
@@ -45,6 +30,35 @@ class BigChicken extends MediumChicken {
       this.defineResizeOrigins(this.y, this.h);
       this.letSpawn(spawn);
       this.loadAnimations();
+   }
+
+   canResize() {
+      let ratio = this.w / this.h;
+      if (this.hasLostHealth()) {
+         this.resize(ratio);
+      } else if (this.sizeRatio() < 0) {
+         clearInterval(this.resizeInterval);
+      } else if (this.healthRatio() == this.sizeRatio() && this.resizingState) {
+         this.newSizeReached(ratio);
+      }
+   }
+
+   hasLostHealth() {
+      return this.healthRatio() < this.sizeRatio();
+   }
+
+   resize(ratio) {
+      this.resizingState = true;
+      this.h -= (1 / this.resizingAmount) * canvasHeight;
+      this.adjustParameterToOwnHeight(ratio);
+   }
+
+   newSizeReached(ratio) {
+      this.h = +this.originalSize * +this.healthRatio();
+      this.adjustParameterToOwnHeight(ratio);
+      this.resizePointY = this.y + this.h;
+      this.resizingState = false;
+      this.refreshSpeedAfterResize();
    }
 
    left() {
@@ -92,7 +106,7 @@ class BigChicken extends MediumChicken {
    }
 
    sizeRatio() {
-      return this.h / this.originalSize;
+      return Math.ceil((this.h / this.originalSize) * 10) / 10;
    }
 
    spawnCoinOnDeath() {

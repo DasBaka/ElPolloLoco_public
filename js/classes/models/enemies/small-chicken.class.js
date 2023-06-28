@@ -34,6 +34,10 @@ class SmallChicken extends JumpableObject {
       this.x = this.spawnX;
    }
 
+   fasterIfHit() {
+      return this.speedX_rel;
+   }
+
    validateLeft() {
       return this.isInsideCanvas(this.x);
    }
