@@ -13,7 +13,7 @@ let statusbarObjectData = {
    maxHealth: 6,
    maxBottle: 3,
    startCoins: 0,
-   startBottles: 5,
+   startBottles: 0,
 };
 
 let movableObjectData = {
@@ -61,7 +61,7 @@ let smallChickenClassData = {
    bottomOffset: 0.825,
    topOffset: 0.175,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.6,
+   enemySpeedConst: 0.625,
    animationCache: smallChickenAnimations,
    health: 1,
    path: smallChickenAnimations['walking'][1],
@@ -75,7 +75,7 @@ let mediumChickenClassData = {
    bottomOffset: 0.8,
    topOffset: 0.125,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.75,
+   enemySpeedConst: 0.775,
    animationCache: mediumChickenAnimations,
    health: 3,
    path: mediumChickenAnimations['walking'][1],
@@ -113,7 +113,7 @@ let throwableObjectData = {
 let heartsData = {
    activeIcon: heartIcon,
    offsetY: 0,
-   offsetX: 8,
+   offsetX: 7.5,
 };
 
 let coinData = {
@@ -125,7 +125,7 @@ let coinData = {
 let bottleData = {
    activeIcon: bottleIcon,
    offsetY: 3,
-   offsetX: 19,
+   offsetX: 18.5,
 };
 
 let coinObjectData = {

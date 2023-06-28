@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
    <head>
       <!--       // General -->
       <meta charset="UTF-8" />
@@ -61,7 +61,7 @@
          Please turn your device<br />
          to landscape mode!
       </h1>
-      <main>
+      <main id="main">
          <canvas id="canvas"></canvas>
          <div class="canvas-overlay mobile-view" id="mobile">
             <dialog class="end-screen" id="modal" oncancel="event.preventDefault()">
@@ -88,7 +88,15 @@
                   id="sound"
                   class="display-none"
                   onchange="muteAllAudio(); initialBGMStart(); "
-                  type="checkbox" /><label for="sound" class="sound-icon"></label>
+                  type="checkbox" /><label for="sound" class="sound-icon setting-icon"></label>
+               <input
+                  name="fullscreen"
+                  id="fullscreen"
+                  class="display-none"
+                  onchange="toggleFullscreen()"
+                  type="checkbox" /><label
+                  for="fullscreen"
+                  class="screen-icon setting-icon"></label>
             </div>
             <div class="mobile-buttons-nav">
                <div class="mobile-buttons-wrapper">

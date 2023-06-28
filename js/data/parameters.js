@@ -15,14 +15,15 @@ const msPerCheck = 16;
 // time between hits to cancel multiple interval calls in seconds
 const invulnerabilityFrames = 0.9;
 // Bottle Cooldown
-const bottleCD = 1500;
-const respawnBottleCD = 3250;
+const bottleCD = 1250;
+const respawnBottleCD = 3000;
+// To cancel object intervals after death
 const cancelInterval = 1250;
 
 // Global
 // global parameters for math
 const pepeSpeed = 0.00275;
-const speedMultiplierAfterHit = 1.25;
+const speedMultiplierAfterHit = 1.5;
 const bottleLeftSidePosition = 0.165;
 const bottleRightSidePosition = 0.66;
 
@@ -39,7 +40,7 @@ const adjustJumpInterval = 1.25;
 const acceleration = 1 / 4000;
 const speedAfterHit = 0.004;
 const pepeJumpSpeed = 0.008;
-const bumpCoeff = -1.0175;
+const bumpCoeff = -1.018;
 
 // hitbox adjustments of enemy collision detection
 const jumpCollisionAdjustment = 0.5;
@@ -50,5 +51,5 @@ const enemyJumpSpeed = 0.0075;
 const randomBaseForJump = 1000;
 const randomChanceForJump = 4;
 const randomBaseForCoin = 100;
-const randomChanceForCoin = 20;
-const followCoeff = 2.5;
+const randomChanceForCoin = 24;
+const followCoeff = 2.25;

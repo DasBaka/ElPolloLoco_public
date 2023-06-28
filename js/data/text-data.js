@@ -35,6 +35,11 @@ const coinTutorial = {
    size: mediumFont,
 };
 
+const healTutorial = {
+   text: '<br><br><br><br><br>     Autoheal included!',
+   size: smallFont,
+};
+
 const chickenTutorial = {
    text: '<br>Some chickens have more health and<br>       different attacks...',
    size: mediumFont,

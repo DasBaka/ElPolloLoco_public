@@ -33,46 +33,6 @@ function init() {
    world = new World(level0);
 }
 
-window.addEventListener('keydown', (e) => {
-   keyCases(e, true);
-});
-
-window.addEventListener('keyup', (e) => {
-   keyCases(e, false);
-});
-
-window.addEventListener('touchstart', (e) => {
-   if (e.target.getAttribute('name') == 'mobile-button') {
-      let el = {};
-      el.code = eval(e.target.value);
-      keyCases(el, true);
-   }
-});
-
-window.addEventListener('touchend', (e) => {
-   if (e.target.getAttribute('name') == 'mobile-button') {
-      let el = {};
-      el.code = eval(e.target.value);
-      keyCases(el, false);
-   }
-});
-
-function keyCases(el, state) {
-   if (!KEYS_disabled) {
-      if (el.code == JUMP_Btn /* || el.code == JUMP_Btn_alt */) {
-         JUMP = state;
-      } else if (el.code == LEFT_Btn || el.code == LEFT_Btn_alt) {
-         LEFT = state;
-         RIGHT_disabled = state;
-      } else if (el.code == RIGHT_Btn || el.code == RIGHT_Btn_alt) {
-         RIGHT = state;
-         LEFT_disabled = state;
-      } else if (el.code == THROW_Btn || el.code == THROW_Btn_alt) {
-         THROW = state;
-      }
-   }
-}
-
 window.addEventListener('blur', () => {
    THROW = false;
    LEFT = false;
@@ -130,9 +90,44 @@ function muteAllAudio() {
 }
 
 function initialBGMStart() {
-   let audio = BGM_AUDIO.object;
+   let audio;
+   if (world?.enemies[world.enemies.length - 1].hasSeenTheCharacter) {
+      audio = BOSS_BGM_AUDIO.object;
+   } else {
+      audio = BGM_AUDIO.object;
+   }
    audio.play();
    audio.currentTime = 0;
    audio.loop = true;
    audio.volume = 0.25;
+}
+
+function toggleFullscreen() {
+   let toggle = document.getElementById('fullscreen');
+   let screen = document.getElementById('main');
+   if (toggle.checked) {
+      enterFullscreen(screen);
+   } else if (!toggle.checked) {
+      exitFullscreen();
+   }
+}
+
+function enterFullscreen(element) {
+   if (element.requestFullscreen) {
+      element.requestFullscreen();
+   } else if (element.msRequestFullscreen) {
+      // for IE11 (remove June 15, 2022)
+      element.msRequestFullscreen();
+   } else if (element.webkitRequestFullscreen) {
+      // iOS Safari
+      element.webkitRequestFullscreen();
+   }
+}
+
+function exitFullscreen() {
+   if (document.exitFullscreen) {
+      document.exitFullscreen();
+   } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+   }
 }
