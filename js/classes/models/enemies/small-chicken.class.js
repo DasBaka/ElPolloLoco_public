@@ -56,7 +56,12 @@ class SmallChicken extends JumpableObject {
 
    spawnCoinOnDeath() {
       let random = Math.floor(Math.random() * randomBaseForCoin);
-      if (random <= randomChanceForCoin) {
+      if (
+         this != this.world.enemies[0] &&
+         (random <= randomChanceForCoin ||
+            this == this.world.enemies[1] ||
+            this == this.world.enemies[2])
+      ) {
          let x = this.x / canvasWidth;
          let y = this.y / canvasHeight;
          this.world.spawnCoin(x, y);

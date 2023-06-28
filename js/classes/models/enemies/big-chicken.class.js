@@ -12,13 +12,7 @@ class BigChicken extends MediumChicken {
    resizeInterval = setInterval(() => this.canResize(), msPerCheck);
 
    stateCheckInterval = setInterval(() => {
-      if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
-         this.world.playAudio(BOSS_BGM_AUDIO);
-         this.hasSeenTheCharacter = true;
-         this.world.silenceBGM(BGM_AUDIO);
-      } else if (this.health == 0 && this.resizingState) {
-         this.bossDefeated();
-      }
+      this.stateCheck();
    }, msPerCheck);
 
    constructor(spawn) {
@@ -30,6 +24,20 @@ class BigChicken extends MediumChicken {
       this.defineResizeOrigins(this.y, this.h);
       this.letSpawn(spawn);
       this.loadAnimations();
+   }
+
+   stateCheck() {
+      if (this.isInsideCanvas(this.x) && !this.hasSeenTheCharacter) {
+         this.characterSeen();
+      } else if (this.health == 0 && !KEYS_disabled) {
+         this.bossDefeated();
+      }
+   }
+
+   characterSeen() {
+      this.world.playAudio(BOSS_BGM_AUDIO);
+      this.hasSeenTheCharacter = true;
+      this.world.silenceBGM(BGM_AUDIO);
    }
 
    canResize() {
@@ -128,7 +136,7 @@ class BigChicken extends MediumChicken {
       RIGHT_disabled = true;
       JUMP_disabled = true;
       THROW_disabled = true;
-      this.resizingAmount = this.resizingAmount * 2;
+      this.resizingAmount = this.resizingAmount * 1.5;
       char.isCharacterDead(true);
       char.endInterval(char.movementInterval);
       char.endInterval(char.animationInterval);

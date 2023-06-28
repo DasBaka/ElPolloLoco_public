@@ -25,7 +25,7 @@ const level0 = {
       ['SmallChicken', 13.4],
       ['MediumChicken', 13.6],
       ['SmallChicken', 13.8],
-      ['BigChicken', 1.5],
+      ['BigChicken', 15.5],
    ],
    coins: [
       [1.1, 0.5],

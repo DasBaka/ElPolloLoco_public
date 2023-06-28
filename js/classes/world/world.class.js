@@ -160,7 +160,7 @@ class World extends Drawable {
       setTimeout(() => {
          this.clearAllIntervals();
          this.silenceAllBGM();
-      }, 1100);
+      }, 1500);
       this.prepareAudioForModal(bossDown);
    }
 
