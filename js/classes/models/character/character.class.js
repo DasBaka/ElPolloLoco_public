@@ -91,7 +91,7 @@ class Character extends JumpableObject {
    isWalking() {
       if (this.validateWalking()) {
          if (PEPE_WALKING_AUDIO.object.paused) {
-            this.world.playAudio(PEPE_WALKING_AUDIO);
+            this.world.audio.playAudio(PEPE_WALKING_AUDIO);
          }
       } else {
          PEPE_WALKING_AUDIO.object.pause();
@@ -197,7 +197,7 @@ class Character extends JumpableObject {
     */
    snoring() {
       this.otherDirection = false;
-      this.world.playAudio(SNORE_AUDIO);
+      this.world.audio.playAudio(SNORE_AUDIO);
       this.playAnimation(this.longIdle);
       this.cancelSnoring();
    }

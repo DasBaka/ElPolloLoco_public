@@ -61,15 +61,15 @@ class EnemyCollision {
          } else {
             char.bump();
          }
-         this.world.playAudio(PEPE_JUMP_AUDIO);
-         this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO);
+         this.world.audio.playAudio(PEPE_JUMP_AUDIO);
+         this.world.audio.playAudio(PEPE_JUMP_GRUNT_AUDIO);
       }
    }
 
    characterGetsHit(char, enemy) {
       if (char.isInvincibleWhileJumping()) {
          char.isHit();
-         this.world.playAudio(PEPE_HURT_AUDIO);
+         this.world.audio.playAudio(PEPE_HURT_AUDIO);
          this.world.pauseInterval(this.world.enemies, true);
          char.isCharacterDead(false);
          this.world.knockback.knockback(char, enemy);

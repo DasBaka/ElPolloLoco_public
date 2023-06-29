@@ -69,8 +69,8 @@ class JumpableObject extends AnimatableObject {
          this.speedY_rel = this.calcSpeed();
          this.inAir = true;
          if (this instanceof Character && !this.invulnerability()) {
-            this.world.playAudio(PEPE_JUMP_AUDIO);
-            this.world.playAudio(PEPE_JUMP_GRUNT_AUDIO);
+            this.world.audio.playAudio(PEPE_JUMP_AUDIO);
+            this.world.audio.playAudio(PEPE_JUMP_GRUNT_AUDIO);
          }
       }
    }

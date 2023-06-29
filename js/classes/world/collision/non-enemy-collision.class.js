@@ -30,13 +30,13 @@ class NonEnemyCollision {
          if (this.isNotFullHealth(stats, char)) {
             this.healCharacter(char, stats);
          } else {
-            this.world.playAudio(COIN_GRAB_AUDIO);
+            this.world.audio.playAudio(COIN_GRAB_AUDIO);
          }
       }
    }
 
    healCharacter(char, stats) {
-      this.world.playAudio(GET_HEALTH_AUDIO);
+      this.world.audio.playAudio(GET_HEALTH_AUDIO);
       stats.currentCoinAmount -= 10;
       char.health += 1;
    }
@@ -56,7 +56,7 @@ class NonEnemyCollision {
          if (stats.bottleAmount == stats.maxBottle) {
             return;
          } else {
-            this.world.playAudio(COLLECT_BOTTLE_AUDIO);
+            this.world.audio.playAudio(COLLECT_BOTTLE_AUDIO);
             stats.updateBottleValue(arr, index);
          }
       }

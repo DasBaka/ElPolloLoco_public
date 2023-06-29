@@ -51,9 +51,9 @@ class BigChicken extends MediumChicken {
     * Plays audio and silences the other BGM, as well as trigger the "hasSeenTheCharacter" variable.
     */
    characterSeen() {
-      this.world.playAudio(BOSS_BGM_AUDIO);
+      this.world.audio.playAudio(BOSS_BGM_AUDIO);
       this.hasSeenTheCharacter = true;
-      this.world.silenceBGM(BGM_AUDIO);
+      this.world.audio.silenceBGM(BGM_AUDIO, false);
    }
 
    /**

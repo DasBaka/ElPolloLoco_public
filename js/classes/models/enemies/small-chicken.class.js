@@ -116,7 +116,7 @@ class SmallChicken extends JumpableObject {
     * => see {@link MovableObject.isHit()}
     */
    isHit() {
-      this.world.playAudio(CHICKEN_CRY_AUDIO);
+      this.world.audio.playAudio(CHICKEN_CRY_AUDIO);
       super.isHit();
    }
 
@@ -125,7 +125,7 @@ class SmallChicken extends JumpableObject {
     */
    noHealth() {
       if (this.health == 0) {
-         this.world.playAudio(CHICKEN_DEFEAT_AUDIO);
+         this.world.audio.playAudio(CHICKEN_DEFEAT_AUDIO);
          super.noHealth();
       }
    }

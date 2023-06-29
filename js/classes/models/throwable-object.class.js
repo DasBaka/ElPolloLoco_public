@@ -144,7 +144,7 @@ class ThrowableObject extends JumpableObject {
     */
    endGravity() {
       this.isHit();
-      this.world.playAudio(BOTTLE_BREAKS_AUDIO);
+      this.world.audio.playAudio(BOTTLE_BREAKS_AUDIO);
       this.y = this.y + 0.33 * this.h;
       this.endInterval(this.movementInterval);
       this.endInterval(this.jumpInterval);

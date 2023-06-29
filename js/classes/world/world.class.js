@@ -3,6 +3,7 @@ class World extends Drawable {
    enemyCollison;
    nonEnemyCollision;
    knockback;
+   audio;
 
    level;
    character;
@@ -32,6 +33,7 @@ class World extends Drawable {
    constructor(level) {
       super();
       this.level = new Level(level);
+      this.audio = new WorldAudio();
       this.createBaseWorld(this.level);
       this.generateWorld();
       this.setWorldForAll(this.baseWorld());
@@ -126,60 +128,27 @@ class World extends Drawable {
       });
    }
 
-   playAudio(variable) {
-      let audio = variable.object;
-      audio.play();
-      audio.volume = variable.volume ?? 1;
-      audio.currentTime = variable.time ?? audio.currentTime;
-      audio.loop = variable.loop ?? false;
-   }
-
-   silenceBGM(variable) {
-      let audio = variable.object;
-      let interval = setInterval(() => {
-         let i = audio.volume;
-         i -= 0.01;
-         if (i <= 0) {
-            clearInterval(interval);
-         } else {
-            audio.volume = i;
-         }
-      }, 100);
-      interval;
-   }
-
    characterIsDead(bossDown) {
       this.enemies.forEach((enemy) => {
-         enemy.endInterval(enemy.movementInterval);
-         if (!enemy instanceof BigChicken) {
-            enemy.endInterval(enemy.animationInterval);
-         }
-         enemy.endInterval(enemy.jumpInterval);
+         this.endEnemyIntervalOnEnd(enemy);
       });
       showEndModal(bossDown);
+      this.endEnemyIntervalOnEnd();
+      this.audio.prepareAudioForModal(bossDown);
+   }
+
+   endIntervalsOnEnd() {
       setTimeout(() => {
          this.clearAllIntervals();
-         this.silenceAllBGM();
+         this.audio.silenceAllBGM(); // <= needs to be revoked to play ending audio!!
       }, 1500);
-      this.prepareAudioForModal(bossDown);
    }
 
-   prepareAudioForModal(bossDown) {
-      this.silenceAllBGM();
-      setTimeout(() => {
-         switch (bossDown) {
-            case true:
-               this.playAudio(WIN_AUDIO);
-               break;
-            case false:
-               this.playAudio(LOOSE_AUDIO);
-               break;
-         }
-      }, 750);
-   }
-
-   silenceAllBGM() {
-      this.silenceBGM(BGM_AUDIO);
-      this.silenceBGM(BOSS_BGM_AUDIO);
+   endEnemyIntervalOnEnd(enemy) {
+      enemy.endInterval(enemy.movementInterval);
+      if (!enemy instanceof BigChicken) {
+         enemy.endInterval(enemy.animationInterval);
+      }
+      enemy.endInterval(enemy.jumpInterval);
    }
 }
