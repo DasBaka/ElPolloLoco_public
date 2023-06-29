@@ -1,6 +1,10 @@
 class WorldAudio {
    constructor() {}
 
+   /**
+    * Reads the audio variable to play and alter the audio.
+    * @param {object} variable - audio data object
+    */
    playAudio(variable) {
       let audio = variable.object;
       audio.play();
@@ -9,6 +13,10 @@ class WorldAudio {
       audio.loop = variable.loop ?? false;
    }
 
+   /**
+    * Plays the end screen audio.
+    * @param {boolean} bossDown - Is boss down?
+    */
    prepareAudioForModal(bossDown) {
       this.silenceAllBGM();
       setTimeout(() => {
@@ -23,11 +31,19 @@ class WorldAudio {
       }, 750);
    }
 
+   /**
+    * Lessens the volume of the BGM.
+    */
    silenceAllBGM() {
       this.silenceBGM(BGM_AUDIO, true);
       this.silenceBGM(BOSS_BGM_AUDIO, true);
    }
 
+   /**
+    * Procedually lessens the volume of the BGM.
+    * @param {object} variable - audio data object
+    * @param {boolean} faster - Faster silencer?
+    */
    silenceBGM(variable, faster) {
       let audio = variable.object;
       let interval = setInterval(

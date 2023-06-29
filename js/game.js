@@ -3,10 +3,40 @@ let modal;
 
 muteAllAudio();
 
+/**
+ * Locks the screen in landscape.
+ */
 screen.orientation.lock('landscape').catch(() => {
    return;
 });
 
+/**
+ * Disables button presses on leaving the window.
+ */
+window.addEventListener('blur', () => {
+   THROW = false;
+   LEFT = false;
+   RIGHT = false;
+   JUMP = false;
+   let sound = document.getElementById('sound');
+   if (sound.checked) {
+      muteAllAudio();
+   }
+   sound.checked = false;
+});
+
+/**
+ * Reloads the page on orientationchange.
+ */
+window.addEventListener('orientationchange', () => {
+   if (window.innerHeight > window.innerWidth) {
+      window.location.reload();
+   }
+});
+
+/**
+ * Renders the site onload.
+ */
 function renderSite() {
    modal = document.getElementById('modal');
    modal.parentElement.parentElement.style.height =
@@ -15,6 +45,10 @@ function renderSite() {
    prepareMainMenu(true);
 }
 
+/**
+ * Renders the main menu inside the modal.
+ * @param {boolean} state - modal open state
+ */
 function prepareMainMenu(state) {
    let start = document.getElementById('start');
    if (!start.classList.contains('display-none')) {
@@ -28,35 +62,29 @@ function prepareMainMenu(state) {
    modal.open = state;
 }
 
+/**
+ * Initializes the game/world.
+ */
 function init() {
    prepareMainMenu(false);
    world = new World(level0);
 }
 
-window.addEventListener('blur', () => {
-   THROW = false;
-   LEFT = false;
-   RIGHT = false;
-   JUMP = false;
-   let sound = document.getElementById('sound');
-   if (sound.checked) {
-      muteAllAudio();
-   }
-   sound.checked = false;
-});
-
-window.addEventListener('orientationchange', () => {
-   if (window.innerHeight > window.innerWidth) {
-      window.location.reload();
-   }
-});
-
+/**
+ * Initializes the end screen.
+ * @param {boolean} state - modal open state
+ */
 function showEndModal(state) {
    let div = document.getElementById('inside-modal');
    div.innerHTML = checkForWin(state);
    toggleDialog();
 }
 
+/**
+ * Checks for win and prepares the modal.
+ * @param {boolean} state - winning state
+ * @returns html string
+ */
 function checkForWin(state) {
    switch (state) {
       case true: //win
@@ -68,6 +96,9 @@ function checkForWin(state) {
    }
 }
 
+/**
+ * Toggles <dialog>.
+ */
 function toggleDialog() {
    if (!modal.open) {
       modal.showModal();
@@ -77,6 +108,9 @@ function toggleDialog() {
    modal.classList.toggle('isOpen');
 }
 
+/**
+ * Resets game to play again.
+ */
 function resetGame() {
    world.clearAllIntervals();
    world = null;
@@ -85,10 +119,16 @@ function resetGame() {
    init();
 }
 
+/**
+ * Mutes all available audios.
+ */
 function muteAllAudio() {
    allAudio.forEach((el) => (el.object.muted = !el.object.muted));
 }
 
+/**
+ * Plays the BGM on enabling audio.
+ */
 function initialBGMStart() {
    let audio;
    if (world?.enemies[world.enemies.length - 1].hasSeenTheCharacter) {
@@ -102,6 +142,9 @@ function initialBGMStart() {
    audio.volume = 0.25;
 }
 
+/**
+ * Toggles fullscreen of the game.
+ */
 function toggleFullscreen() {
    let toggle = document.getElementById('fullscreen');
    let screen = document.getElementById('main');
@@ -112,6 +155,10 @@ function toggleFullscreen() {
    }
 }
 
+/**
+ * Function to enter fullscreen.
+ * @param {element} element - fullscreen element
+ */
 function enterFullscreen(element) {
    if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -124,6 +171,9 @@ function enterFullscreen(element) {
    }
 }
 
+/**
+ * Function to end fullscreen mode.
+ */
 function exitFullscreen() {
    if (document.exitFullscreen) {
       document.exitFullscreen();
