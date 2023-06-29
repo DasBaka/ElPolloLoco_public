@@ -26,7 +26,7 @@ class World extends Drawable {
          THROW_disabled = true;
          this.throwable.push(new ThrowableObject(this));
          this.throwable[this.throwable.length - 1].world = this;
-         this.playAudio(THROW_BOTTLE_AUDIO);
+         this.audio.playAudio(THROW_BOTTLE_AUDIO);
          this.bottleCooldown();
       }
    }, msPerCheck);
@@ -40,7 +40,7 @@ class World extends Drawable {
       this.setWorldForAll(this.baseWorld());
       this.resetSpawns();
       this.draw();
-      this.playAudio(BGM_AUDIO);
+      this.audio.playAudio(BGM_AUDIO);
    }
 
    /**
@@ -189,7 +189,7 @@ class World extends Drawable {
          this.endEnemyIntervalOnEnd(enemy);
       });
       showEndModal(bossDown);
-      this.endEnemyIntervalOnEnd();
+      this.endIntervalsOnEnd();
       this.audio.prepareAudioForModal(bossDown);
    }
 
