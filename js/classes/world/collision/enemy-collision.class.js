@@ -1,6 +1,9 @@
 class EnemyCollision {
    world;
 
+   /**
+    * Checks for enemy collisions between Character and ThrowableObject.
+    */
    enemyCollisionInterval = setInterval(() => {
       this.bottleAndEnemyCollision();
       this.charAndEnemyCollision();
@@ -10,18 +13,19 @@ class EnemyCollision {
       this.world = world;
    }
 
-   charAndEnemyCollision() {
-      this.world.enemies.forEach((enemy) => {
-         this.enemyCollidesWithCharacter(enemy);
-      });
-   }
-
+   /**
+    * Initializies the collision detection with ThrowableObjects for each enemy.
+    */
    bottleAndEnemyCollision() {
       this.world.enemies.forEach((enemy) => {
          this.bottleCollidesWithEnemy(enemy);
       });
    }
 
+   /**
+    * Checks for positive collision between a thrown bottle and an enemy.
+    * @param {object} enemy - current enemy
+    */
    bottleCollidesWithEnemy(enemy) {
       let bottle = this.world.throwable[this.world.throwable.length - 1];
       if (this.world.throwable.length != 0) {
@@ -31,6 +35,12 @@ class EnemyCollision {
       }
    }
 
+   /**
+    * Damages both bottle and enemy because of positive collision.
+    * Different damage effects on lesser enemies!
+    * @param {object} bottle - bottle object
+    * @param {object} enemy - enemy object
+    */
    positiveBottleEnemyCollision(bottle, enemy) {
       if (!enemy.invulnerability()) {
          if (enemy instanceof BigChicken) {
@@ -44,6 +54,19 @@ class EnemyCollision {
       }
    }
 
+   /**
+    * Initializes the collision detection with the character for each enemy.
+    */
+   charAndEnemyCollision() {
+      this.world.enemies.forEach((enemy) => {
+         this.enemyCollidesWithCharacter(enemy);
+      });
+   }
+
+   /**
+    * Checks for positive collision and collision type between the character and an enemy.
+    * @param {object} enemy - current enemy object
+    */
    enemyCollidesWithCharacter(enemy) {
       let char = this.world.character;
       if (char.isColliding(enemy)) {
@@ -53,6 +76,11 @@ class EnemyCollision {
       }
    }
 
+   /**
+    * Triggers specific effects, if the character jumps successfully on an enemy from above.
+    * @param {object} char - character object
+    * @param {object} enemy - enemy object
+    */
    characterJumpsOnEnemy(char, enemy) {
       if (!enemy.invulnerability()) {
          enemy.isHit();
@@ -66,6 +94,11 @@ class EnemyCollision {
       }
    }
 
+   /**
+    * On unsuccessfull "jump" and successfull collision detection, it triggers several hit functions of the both collisioners.
+    * @param {object} char - character object
+    * @param {object} enemy - enemy object
+    */
    characterGetsHit(char, enemy) {
       if (char.isInvincibleWhileJumping()) {
          char.isHit();

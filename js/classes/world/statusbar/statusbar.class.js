@@ -165,4 +165,27 @@ class Statusbar extends DrawableObject {
    bottleIsMax() {
       return this.bottleAmount == this.maxBottle;
    }
+
+   /**
+    * Heals the character after the knockback, if he has enough coins.
+    */
+   potentialHeal() {
+      let char = this.world.character;
+      let stats = this.world.statusbar;
+      let ref = this.world.nonEnemyCollision;
+      if (ref.isNotFullHealth(stats, char)) {
+         ref.healCharacter(char, stats);
+      }
+   }
+
+   /**
+    * Automatically heals the character if he has enough coins.
+    * @param {object} char - character object
+    * @param {num} stats - coin amount
+    */
+   healCharacter(char, stats) {
+      this.world.audio.playAudio(GET_HEALTH_AUDIO);
+      stats.currentCoinAmount -= 10;
+      char.health += 1;
+   }
 }

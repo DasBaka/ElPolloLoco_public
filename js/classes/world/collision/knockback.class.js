@@ -5,6 +5,11 @@ class Knockback {
       this.world = world;
    }
 
+   /**
+    * Creates a knockback effect for the character on hit.
+    * @param {object} target - target to get knockbacked (character)
+    * @param {object} relation - object, which causes the knockback
+    */
    knockback(target, relation) {
       if (target instanceof Character) {
          PEPE_WALKING_AUDIO.object.pause();
@@ -17,6 +22,12 @@ class Knockback {
       }, invulnerabilityFrames * 1000);
    }
 
+   /**
+    * In relation to the knockback cause, this function defines the knockback direction of the character and creates an interval for this type.
+    * @param {object} target - target to get knockbacked (character)
+    * @param {object} relation - object, which causes the knockback
+    * @returns interval
+    */
    knockbackDirection(target, relation) {
       let interval = setInterval(() => {
          if (relation.x > target.x) {
@@ -31,21 +42,17 @@ class Knockback {
       return interval;
    }
 
+   /**
+    * Ends the knockback interval, as long as the character has health.
+    * @param {object} target - target to get knockbacked (character)
+    * @param {interval} interval - interval to clear
+    */
    endKnockback(target, interval) {
       clearInterval(interval);
       if (target.health > 0) {
          enableKeys();
          this.world.pauseInterval(this.world.enemies, false);
       }
-      this.potentialHeal();
-   }
-
-   potentialHeal() {
-      let char = this.world.character;
-      let stats = this.world.statusbar;
-      let ref = this.world.nonEnemyCollision;
-      if (ref.isNotFullHealth(stats, char)) {
-         ref.healCharacter(char, stats);
-      }
+      this.world.statusbar.potentialHeal();
    }
 }

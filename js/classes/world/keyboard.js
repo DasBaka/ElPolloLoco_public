@@ -31,11 +31,19 @@ function enableKeys() {
    THROW_disabled = false;
 }
 
+/**
+ * Changes variable stats to simulate disabled keys.
+ */
 function disableKeys() {
    enableKeys();
    KEYS_disabled = true;
 }
 
+/**
+ * Changes variable states according to the input.
+ * @param {element} el - input
+ * @param {boolean} state - input state
+ */
 function keyCases(el, state) {
    if (!KEYS_disabled) {
       if (el.code == JUMP_Btn /* || el.code == JUMP_Btn_alt */) {
@@ -52,6 +60,9 @@ function keyCases(el, state) {
    }
 }
 
+/**
+ * Same as {@link disableKeys()} but prevents more.
+ */
 function disableKeysAfterBossIsDown() {
    disableKeys();
    LEFT_disabled = true;
@@ -60,14 +71,23 @@ function disableKeysAfterBossIsDown() {
    THROW_disabled = true;
 }
 
+/**
+ * Listener for Keydown.
+ */
 window.addEventListener('keydown', (e) => {
    keyCases(e, true);
 });
 
+/**
+ * Listener for Keyup.
+ */
 window.addEventListener('keyup', (e) => {
    keyCases(e, false);
 });
 
+/**
+ * Mobile version of the Keydown-Listener.
+ */
 window.addEventListener('touchstart', (e) => {
    if (e.target.getAttribute('name') == 'mobile-button') {
       let el = {};
@@ -76,6 +96,9 @@ window.addEventListener('touchstart', (e) => {
    }
 });
 
+/**
+ * Mobile version of the Keyup-Listener.
+ */
 window.addEventListener('touchend', (e) => {
    if (e.target.getAttribute('name') == 'mobile-button') {
       let el = {};

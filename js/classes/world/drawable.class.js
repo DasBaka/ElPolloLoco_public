@@ -6,6 +6,9 @@ class Drawable {
       this.defineCanvasProperties();
    }
 
+   /**
+    * Creates the context of the canvas and redefines its size based on the user resolution.
+    */
    defineCanvasProperties() {
       this.canvas = document.getElementById('canvas');
       this.ctx = canvas.getContext('2d');
@@ -16,15 +19,20 @@ class Drawable {
       this.canvas.height = canvasHeight;
    }
 
+   /**
+    * Main method called on {@link World}-creation to draw on the canvas.
+    */
    draw() {
       this.prepareCanvas();
-
       let self = this;
       requestAnimationFrame(() => {
          self.draw();
       });
    }
 
+   /**
+    * Prepares and translate the canvas before requesting the animation frame.
+    */
    prepareCanvas() {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
       this.ctx.translate(this.cameraX, 0);
@@ -33,6 +41,9 @@ class Drawable {
       this.drawStaticObjects();
    }
 
+   /**
+    * Triggers a function for each relevant Object / Object Array to get drawn on the canvas.
+    */
    drawMovableObjects() {
       this.addObjectsToMap(this.backgroundObjects);
       this.addTextObjectsToMap(this.textObjects);
@@ -43,6 +54,9 @@ class Drawable {
       this.addToMap(this.character);
    }
 
+   /**
+    * Triggers a function for each relevant static Object / static Object Array to get drawn on the canvas.
+    */
    drawStaticObjects() {
       let stats = this.statusbar;
       this.addObjectsToMap(stats.hearts);
@@ -54,20 +68,25 @@ class Drawable {
       });
    }
 
+   /**
+    * Main method to get an object drawn on the canvas.
+    * @param {object} obj - object
+    */
    addToMap(obj) {
       if (obj.otherDirection) {
          this.flipImage(obj);
       }
-
       this.ctx.drawImage(obj.img, obj.x, obj.y, obj.w, obj.h);
-
-      /*       this.showHitBox(obj); */
-
+      /*       this.showHitBox(obj); */ //only for visual collision detection
       if (obj.otherDirection) {
          this.flipImageBack(obj);
       }
    }
 
+   /**
+    * Method to get several text-objects drawn on the canvas.
+    * @param {array} arr - text-object array
+    */
    addTextObjectsToMap(arr) {
       arr.forEach((txtObj) => {
          for (let i = 0; i < txtObj.text.length; i++) {
@@ -79,6 +98,13 @@ class Drawable {
       });
    }
 
+   /**
+    * Main method to get a text-object drawn on the canvas.
+    * @param {string} text - text
+    * @param {x} x - x-coord
+    * @param {y} y - y-corrd
+    * @param {num} lineWidth - height of the text line
+    */
    addTextToMap(text, x, y, lineWidth) {
       this.ctx.fillStyle = fillColor;
       this.ctx.fillText(text, x, y);
@@ -89,11 +115,20 @@ class Drawable {
       }
    }
 
+   /**
+    * Reads the font size of the decoment.
+    * @returns num / font size
+    */
    getFontSize() {
       let bd = document.body;
       return Number(window.getComputedStyle(bd, '').getPropertyValue('font-size').match(/\d+/)[0]);
    }
 
+   /**
+    * JUST FOR DEBUGGING!
+    * Shows a border araound objects.
+    * @param {object} obj - object
+    */
    showHitBox(obj) {
       this.ctx.beginPath();
       this.ctx.lineWidth = '2';
@@ -107,6 +142,10 @@ class Drawable {
       this.ctx.stroke();
    }
 
+   /**
+    * Prepares an object to get x-mirrored.
+    * @param {object} obj - object
+    */
    flipImage(obj) {
       this.ctx.save();
       this.ctx.translate(obj.w, 0);
@@ -114,11 +153,19 @@ class Drawable {
       obj.x = obj.x * -1;
    }
 
+   /**
+    * Restores the context after flipping an object (see {@link flipImage()}).
+    * @param {object} obj - object
+    */
    flipImageBack(obj) {
       obj.x = obj.x * -1;
       this.ctx.restore();
    }
 
+   /**
+    * Parent function of {@link addToMap()}.
+    * @param {array} objects - object array
+    */
    addObjectsToMap(objects) {
       objects.forEach((o) => {
          this.addToMap(o);
