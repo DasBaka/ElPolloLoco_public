@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "better-docs": "^2.7.2",
+    "core-js": "^3.31.0"
+  }
+}
