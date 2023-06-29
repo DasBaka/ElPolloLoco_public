@@ -16,6 +16,10 @@ class Level {
       this.forEachTextData(level.text);
    }
 
+   /**
+    * Creates a new "enemies" class object, for each object in level.enemies.
+    * @param {array} enemies - object array
+    */
    forEachEnemyData(enemies) {
       for (let i = 0; i < enemies.length; i++) {
          let x = enemies[i][1];
@@ -33,18 +37,30 @@ class Level {
       }
    }
 
+   /**
+    * Creates a new {@link Coin()} Class object for each object in level.coins
+    * @param {array} coins - object array
+    */
    forEachCoinData(coins) {
       for (let i = 0; i < coins.length; i++) {
          this.coins.push(new Coin(coins[i][0], coins[i][1]));
       }
    }
 
+   /**
+    * Creates a new {@link Tabasco()} class object for each number in level.bottles
+    * @param {num} x - future x-coord of the tabasco bottle
+    */
    forEachBottleData(x) {
       for (let i = 0; i < x.length; i++) {
          this.bottles.push(new Tabasco(x[i]));
       }
    }
 
+   /**
+    * Creates a new {@link BackgroundObject} class object corresponding to the length of the level.
+    * @param {num} length - level length
+    */
    forEachBGData(length) {
       for (let i = 0; i < 3; i++) {
          for (let j = 0; j < length; j++) {
@@ -53,6 +69,10 @@ class Level {
       }
    }
 
+   /**
+    * Creates an new {@link TextObject()} class object for each object in level.text.
+    * @param {array} text - object array
+    */
    forEachTextData(text) {
       for (let i = 0; i < text.length; i++) {
          this.textObjects.push(new TextObject(text[i][0], text[i][1]));

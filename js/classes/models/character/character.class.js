@@ -20,7 +20,9 @@ class Character extends JumpableObject {
       this.loadAnimations();
    }
 
-   // move world camera
+   /**
+    * Checks, if the world's camera should be moved or not.
+    */
    cameraCheck() {
       if (this.levelIsNotEnding() && this.health != 0) {
          this.moveCamera();
@@ -29,19 +31,28 @@ class Character extends JumpableObject {
       }
    }
 
+   /**
+    * 1.) Defines the end of the level, where the camera and the character won't move further.
+    * 2.) Enables walking to the left if the end is reached and to prevent graphical glitches with the background there.
+    * @returns boolean
+    */
    levelIsNotEnding() {
-      return this.world.levelEnd + this.world.cameraX - this.spawnX > -this.world.cameraX;
+      return this.x + canvasWidth < this.world.levelEnd || this.validateLeft();
    }
 
+   /**
+    * Moves the camera of {@link World.cameraX} to move the visible game world.
+    */
    moveCamera() {
       this.world.cameraX = -this.x + canvasWidth * this.x_rel;
    }
 
-   // movement
+   /**
+    * => see {@link MovableObject.left()}
+    */
    left() {
       if (this.validateLeft()) {
          this.moveLeft();
-         this.world.levelEnd -= this.speedX;
          this.otherDirection = true;
       } else if (this.x < this.spawnX) {
          this.x = this.spawnX;
@@ -49,23 +60,34 @@ class Character extends JumpableObject {
       }
    }
 
+   /**
+    * => see {@link MovableObject.validateLeft()}
+    */
    validateLeft() {
       return LEFT && !LEFT_disabled && this.x > this.spawnX;
    }
 
+   /**
+    * => see {@link MovableObject.right()}
+    */
    right() {
       if (this.validateRight()) {
          this.moveRight();
-         this.world.levelEnd += this.speedX;
          this.otherDirection = false;
       }
    }
 
+   /**
+    * => see {@link MovableObject.validateRight()}
+    */
    validateRight() {
       return RIGHT && !RIGHT_disabled && this.levelIsNotEnding();
    }
 
-   // animation states
+   /**
+    * => see {@link AnimatableObject.isWalking()}
+    * Also: Plays the walking sound.
+    */
    isWalking() {
       if (this.validateWalking()) {
          if (PEPE_WALKING_AUDIO.object.paused) {
@@ -77,59 +99,102 @@ class Character extends JumpableObject {
       return this.validateWalking();
    }
 
+   /**
+    * Condition for walking state of Character.
+    * @returns boolean
+    */
    validateWalking() {
       return (
-         (this.validateLeft() || this.validateRight()) &&
-         !JUMP &&
-         !this.inAir &&
-         this.y == this.spawnY &&
-         !this.mtplBtnPress()
+         (this.validateLeft() || this.validateRight()) && // no btn press
+         !JUMP && // no jump
+         !this.inAir && // not in air
+         this.y == this.spawnY && // not at the beginning
+         !this.mtplBtnPress() // no simultaneas btn press
       );
    }
 
+   /**
+    * => see {@link AnimatableObject.isJumping()}
+    */
    isJumping() {
       return this.inAir;
    }
 
+   /**
+    * => see {@link AnimatableObject.isFalling()}
+    */
    isFalling() {
       return this.speedY_rel < 0 && this.inAir;
    }
 
+   /**
+    * => see {@link AnimatableObject.isHurt()}
+    */
    isHurt() {
       return this.invulnerability();
    }
 
+   /**
+    * Condition to let the character got hit
+    * @returns boolean
+    */
    characterGotHit() {
       return this.invulnerability();
    }
 
+   /**
+    * => see {@link AnimatableObject.isLongIdle()}
+    */
    isLongIdle() {
       return this.timePassed(this.idleSince, 10);
    }
 
+   /**
+    * "Prevents synchronous button presses" of LEFT and RIGHT
+    * @returns boolean
+    */
    mtplBtnPress() {
       return LEFT && RIGHT;
    }
 
+   /**
+    * Only triggers the JUMP button, with the following condition.
+    * @returns boolean
+    */
    validateJumpBtn() {
       return JUMP && !JUMP_disabled && !this.isAbove;
    }
 
+   /**
+    * It gives the character a short time frame, in which he can't get hit an triggering the jump.
+    * @returns boolean
+    */
    isInvincibleWhileJumping() {
       return !this.world.character.invulnerability() && this.world.character.speedY < 15;
    }
 
+   /**
+    * Checks, if the character died and prepares the end game screen according to it.
+    * @param {boolean} bossDown - If the boss is defeated, it'll be true and triggers the winning state of the end game screen.
+    */
    isCharacterDead(bossDown) {
       if (this.health == 0 || bossDown) {
          this.world.characterIsDead(bossDown);
       }
    }
 
+   /**
+    *  => see {@link JumpableObject.endGravity()}
+    */
    endGravity() {
       super.endGravity();
       this.isAbove = false;
    }
 
+   /**
+    * Special animation for Character.
+    * Snores if idle for too long.
+    */
    snoring() {
       this.otherDirection = false;
       this.world.playAudio(SNORE_AUDIO);
@@ -137,6 +202,9 @@ class Character extends JumpableObject {
       this.cancelSnoring();
    }
 
+   /**
+    * Resets the snoring Audio.
+    */
    cancelSnoring() {
       if (this.snoringInterval == undefined) {
          this.snoringInterval = setInterval(() => {
@@ -147,5 +215,15 @@ class Character extends JumpableObject {
             }
          }, msPerCheck);
       }
+   }
+
+   /**
+    * Ends every relevant interval related to Character.
+    */
+   endCharacterIntervals() {
+      this.isCharacterDead(true);
+      this.endInterval(this.movementInterval);
+      this.endInterval(this.animationInterval);
+      this.endInterval(this.jumpInterval);
    }
 }

@@ -94,11 +94,11 @@ class MovableObject extends DrawableObject {
    }
 
    /**
-    * If the object is a non-boss-enemy, this function calls their correspongin function (see: {@link SmallChicken.spawnCoinOnDeath()})
+    * If the object is a non-boss-enemy, this function calls their correspongin function (see: {@link SmallChicken.canSpawnCoinOnDeath()})
     */
    chickensSpawnCoinsOnDeath() {
       if (this instanceof (SmallChicken || MediumChicken)) {
-         this.spawnCoinOnDeath();
+         this.canSpawnCoinOnDeath();
       }
    }
 

@@ -6,6 +6,13 @@ class Icon extends DrawableObject {
       this.renderIcon(activeImg, num, line, xOffset);
    }
 
+   /**
+    * Renders the img or adjust the parameters respectively.
+    * @param {imgUrl} img - img data
+    * @param {num} num - nth img
+    * @param {num} yOffset - offset y
+    * @param {num} xOffset - offset x
+    */
    renderIcon(img, num, yOffset, xOffset) {
       this.loadImage(img);
       this.prepareImage();

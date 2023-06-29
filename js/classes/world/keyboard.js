@@ -52,6 +52,14 @@ function keyCases(el, state) {
    }
 }
 
+function disableKeysAfterBossIsDown() {
+   disableKeys();
+   LEFT_disabled = true;
+   RIGHT_disabled = true;
+   JUMP_disabled = true;
+   THROW_disabled = true;
+}
+
 window.addEventListener('keydown', (e) => {
    keyCases(e, true);
 });

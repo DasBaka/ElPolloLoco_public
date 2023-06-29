@@ -41,7 +41,7 @@ let iconClassData = {
 
 let characterClassData = {
    x_rel: 0.36,
-   w_rel: 0.18,
+   w_rel: 0.175,
    h_rel: 0.6,
    leftOffset: 0.2,
    rightOffset: 0.7,
@@ -55,27 +55,27 @@ let characterClassData = {
 
 let smallChickenClassData = {
    w_rel: 0.1,
-   h_rel: 0.15,
+   h_rel: 0.16,
    leftOffset: 0.175,
    rightOffset: 0.825,
    bottomOffset: 0.825,
    topOffset: 0.175,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.625,
+   enemySpeedConst: 0.575,
    animationCache: smallChickenAnimations,
    health: 1,
    path: smallChickenAnimations['walking'][1],
 };
 
 let mediumChickenClassData = {
-   w_rel: 0.125,
+   w_rel: 0.124,
    h_rel: 0.25,
-   leftOffset: 0.075,
+   leftOffset: 0.076,
    rightOffset: 0.925,
    bottomOffset: 0.8,
    topOffset: 0.125,
    speedX_rel: pepeSpeed,
-   enemySpeedConst: 0.775,
+   enemySpeedConst: 0.725,
    animationCache: mediumChickenAnimations,
    health: 3,
    path: mediumChickenAnimations['walking'][1],
@@ -142,7 +142,7 @@ let coinObjectData = {
 };
 
 let tabascoObjectData = {
-   w_rel: 0.12,
+   w_rel: 0.125,
    h_rel: 0.2,
    leftOffset: 0.3,
    rightOffset: 0.9,

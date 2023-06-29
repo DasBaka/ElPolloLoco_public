@@ -1,4 +1,5 @@
 const level0 = {
+   // x-coordinates reflects the position of x canvasWidths
    enemies: [
       ['SmallChicken', 2.75],
       ['SmallChicken', 3.2],
@@ -14,7 +15,7 @@ const level0 = {
       ['MediumChicken', 9.25],
       ['SmallChicken', 9.5],
       ['SmallChicken', 9.75],
-      ['SmallChicken', 9.8],
+      ['SmallChicken', 9.85],
       ['SmallChicken', 10.5],
       ['MediumChicken', 10.75],
       ['SmallChicken', 11],
@@ -63,7 +64,8 @@ const level0 = {
       [14.5, 0.6],
    ],
    bottles: [5.75, 6.5, 9, 10.5, 12, 14.75, 14.9],
-   levelLength: 8,
+   // levelLength should be the Math.ceil(max x-coordinate / 2 ) + 1
+   levelLength: 9,
    text: [
       [startArrow, 0.0],
       [moveTutorial, 0.025],

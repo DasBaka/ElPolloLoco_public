@@ -46,10 +46,10 @@ const bumpCoeff = -1.018;
 const jumpCollisionAdjustment = 0.5;
 
 // Enemy
-const spawnCoeff = 0.64; // min. 1 - character.x_rel !! else: Enemy can spawn inside Screen.
-const enemyJumpSpeed = 0.0075;
+const spawnCoeff = 0.8; // min. 1 - character.x_rel !! else: Enemy can spawn inside Screen.
+const enemyJumpSpeed = 0.0069;
 const randomBaseForJump = 1000;
-const randomChanceForJump = 4;
+const randomChanceForJump = 8;
 const randomBaseForCoin = 100;
 const randomChanceForCoin = 24;
-const followCoeff = 2.25;
+const followCoeff = 2.1;
